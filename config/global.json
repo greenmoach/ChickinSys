@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "ChickinSys": {
+      "applicationId": "pL0y8IeDJgtlzr4LWUJw6zlEMVJcZsvRLFq1HucI",
+      "masterKey": "QCAjN82fpLKvHdrD5OkvuFz7x7TBqdi2EhbBLMq6"
+    },
+    "_default": {
+      "link": "ChickinSys"
+    }
+  }
+}
