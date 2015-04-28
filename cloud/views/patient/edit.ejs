@@ -1,0 +1,75 @@
+<!-- views/therapist/edit.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+
+<% include ../partials/navigation.ejs %>
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<section>
+    <div class="container">
+        <form class='form-horizontal' method='post' action= <%=  '/patients/' + patient.id %>>
+            <div class="form-group">
+                <label for="inputName" class="col-sm-2 control-label">姓名</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputName" name="name" value ="<%= patient.get('name') %>" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">性別</label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineRadio1" value="male" <%= patient.get('sex') == 'male' ? 'checked' : '' %>> 男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineRadio2" value="female" <%= patient.get('sex') == 'female' ? 'checked' : '' %>> 女
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">狀態</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="kind">
+                        <option value="住院" <%= patient.get('kind') == '住院' ? 'selected' : '' %>>住院</option>
+                        <option value="OPD" <%= patient.get('kind') == 'OPD' ? 'selected' : '' %>>OPD</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="inputPoint" class="col-sm-2 control-label">點數</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputPoint" name="point" value="<%= patient.get('point') %>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="taDiagnosis" class="col-sm-2 control-label">診斷</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="6" id="taDiagnosis" name="diagnosis"><%= patient.get('diagnosis') %></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <!-- This hidden element causes express.methodOverride middleware to override
+                    the HTTP method from post to put for a truly RESTful interface. -->
+                    <input type='hidden' name='_method' value='put' />
+                    <button type="submit" class="btn btn-default">修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>

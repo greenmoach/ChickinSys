@@ -1,0 +1,41 @@
+<!-- views/therapist/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+
+<% include ../partials/navigation.ejs %>
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2 class="session-heading">Physical Therapist</h2>
+        <div class="line"></div>
+    </div>
+</div>
+
+<div class="row">
+    <% therapists.forEach(function(therapist){   %>
+        <div class="col-md-4">
+            <h4> <%= therapist.get('name') %> </h4>
+            <h4> <%= therapist.get('sex') %> </h4>
+            <h4> <%= formatTime(therapist.createdAt) %> </h4>
+
+            <a class="btn btn-default" href="<%= '/therapists/' + therapist.id + '/edit' %>" role="button">修改</a>
+        </div>
+
+    <% }) %>
+</div>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>

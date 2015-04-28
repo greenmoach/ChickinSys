@@ -1,0 +1,43 @@
+<!-- views/patient/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+
+<% include ../partials/navigation.ejs %>
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2 class="session-heading">Partials</h2>
+        <div class="line"></div>
+    </div>
+</div>
+
+<div class="row">
+    <% patients.forEach(function(patient){   %>
+    <div class="col-md-4">
+        <h4> <%= patient.get('name') %> </h4>
+        <h4> <%= patient.get('sex') %> </h4>
+        <h4> <%= patient.get('kind') %> </h4>
+        <h4> <%= patient.get('point') %> </h4>
+        <h4> <%= patient.get('diagnosis') %> </h4>
+        <h4> <%= formatTime(patient.createdAt) %> </h4>
+        <a class="btn btn-default" href="<%= '/patients/' + patient.id + '/edit' %>" role="button">修改</a>
+    </div>
+
+    <% }) %>
+</div>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>
