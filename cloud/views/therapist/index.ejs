@@ -28,6 +28,7 @@
             <h4> <%= formatTime(therapist.createdAt) %> </h4>
 
             <a class="btn btn-default" href="<%= '/therapists/' + therapist.id + '/edit' %>" role="button">修改</a>
+            <a class="btn btn-default" href="<%= '/schedule/' + therapist.id + '/show' %>" role="button">病患</a>
         </div>
 
     <% }) %>

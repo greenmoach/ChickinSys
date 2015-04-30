@@ -1,0 +1,47 @@
+/*** Display Card ***/
+.contrast {
+    overflow: visible !important;
+    margin-bottom: 30px !important;
+    background-color: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 1px #784942;
+    -moz-box-shadow: 0px 0px 1px #784942;
+    box-shadow: 0px 0px 1px #784942;
+}
+
+span.name-circle {
+    display: block;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+
+    -moz-border-radius: 50%; /* half of size */
+    border-radius: 50%; /* half of size */
+
+    background-color: #e74c3c;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+}
+
+
+
+/**** Schedule time table ****/
+.week-description {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: #fc6d09;
+    color: #fff;
+    font-size: 25px;
+}
+
+.time-description {
+    display: block;
+    height: 20px;
+    width: 100%;
+    background-color: #5298fc;
+    color: #fff;
+}

@@ -1,0 +1,161 @@
+<!-- views/therapist/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+
+<% include ../partials/navigation.ejs %>
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<input id="therapistId" type="hidden" value="<%= therapistId %>"/>
+
+<div class="selectedArea row"></div>
+
+<div class="selectableArea row"></div>
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"><button class="btn btn-primary btn-block" onclick="AddData()">確定</button></div>
+    <div class="col-md-4"></div>
+</div>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+<script type="text/template" class="selectedItem">
+    <div class="col-md-4 contrast">
+        <span class="name-circle">{{= name.substr(0,1) }}</span> <h4> {{= name }} </h4>
+        <button class="btn btn-default" onclick="RmPa(' {{= objectId}} ')">移除</button>
+    </div>
+
+
+</script>
+
+<script type="text/template" class="selectableItem">
+    <div class="col-md-4 contrast">
+        <span class="name-circle">{{= name.substr(0,1) }}</span> <h4> {{= name }} </h4>
+        <button class="btn btn-default" onclick="AddPa(' {{= objectId}} ')">新增</button>
+    </div>
+
+
+</script>
+
+<script>
+    // When rending an underscore template, we want top-level
+    // variables to be referenced as part of an object. For
+    // technical reasons (scope-chain search), this speeds up
+    // rendering; however, more importantly, this also allows our
+    // templates to look / feel more like our server-side
+    // templates that use the rc (Request Context / Colletion) in
+    // order to render their markup.
+    _.templateSettings.variable = "rc";
+
+    _.templateSettings = {
+        interpolate: /\{\{\=(.+?)\}\}/g,
+        evaluate: /\{\{(.+?)\}\}/g
+    };
+
+    var currSche = null, allPa = null;;
+
+    $(function() {
+        FatchResult();
+    });
+
+    function FatchResult() {
+        $.ajax({
+            url: '/schedule/'+ $('#therapistId').val() +'/now',
+            method: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+
+                currSche = data.sch;
+                allPa = data.pa;
+
+                RenderResult();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+            }
+        });
+    }
+
+    function RenderResult() {
+        $( ".selectableArea").empty();
+        var cont = _.filter(allPa, function(elem){
+            return _.findIndex(currSche, {PatientId: elem.objectId}) == -1;
+        });
+        // Grab the HTML out of our template tag and pre-compile it.
+        var template = _.template(
+                $( "script.selectableItem" ).html()
+        );
+        _.each(cont, function(elem){
+            // Render the underscore template and inject it after the H1
+            // in our current DOM.
+            $( ".selectableArea" ).append(
+                    template( elem )
+            );
+
+        });
+
+
+        $( ".selectedArea").empty();
+        cont = _.filter(allPa, function(elem){
+            return _.findIndex(currSche, {PatientId: elem.objectId}) != -1;
+        });
+
+        template = _.template(
+                $( "script.selectedItem" ).html()
+        );
+
+        _.each(cont, function(elem){
+            // Render the underscore template and inject it after the H1
+            // in our current DOM.
+            $( ".selectedArea" ).append(
+                    template( elem )
+            );
+
+        });
+    }
+
+    function AddPa(id) {
+        if (currSche == null || allPa == null) {FatchResult();}
+        else {
+            currSche.push({'TherapistId': therapist, 'PatientId': id.trim(), 'Day': 'Mon', 'Period': '08300900'});
+            RenderResult();
+        }
+    }
+
+    function RmPa(id) {
+        if (currSche == null || allPa == null) {FatchResult();}
+        else {
+            currSche = _.filter(currSche, function(item){ return item.PatientId != id.trim() });
+            RenderResult();
+        }
+    }
+
+    var therapist = $('#therapistId').val();
+
+    function AddData() {
+        $.ajax({
+            url: '/schedules/'+ $('#therapistId').val(),
+            contentType: "application/json;charset=utf-8",
+            method: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(currSche),
+            success: function (data, textStatus, jqXHR) {
+                window.location = '/schedule/' + therapist + '/show';
+            },
+            error: function (xhr, textStatus, errorThrown) {
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
