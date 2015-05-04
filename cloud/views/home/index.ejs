@@ -11,32 +11,69 @@
     <% include ../partials/header %>
 </header>
 
+<div class="jobZone">
 
+</div>
 
 
 <footer>
     <% include ../partials/footer %>
 </footer>
 
-<script>
-    $(function(){
+<script type="text/template" class="lineUp">
+    <div class="col-md-4 contrast">
+        <span class="name-circle">{{= pa.name.substr(0,1) }}</span> <h4> {{= pa.name }} </h4>
 
+    </div>
+
+
+</script>
+
+<script>
+
+    _.templateSettings = {
+        interpolate: /\{\{\=(.+?)\}\}/g,
+        evaluate: /\{\{(.+?)\}\}/g
+    };
+
+    $(function(){
+        todyPatients();
 
     });
 
 
     function todyPatients() {
         $.ajax({
-            url: '/schedules/'+ $('#therapistId').val(),
+            url: '/jobs/',
             contentType: "application/json;charset=utf-8",
-            method: 'POST',
+            method: 'GET',
             dataType: 'json',
-            data: JSON.stringify(currSche),
             success: function (data, textStatus, jqXHR) {
-                window.location = '/schedule/' + therapist + '/show';
+                lineUpPatients(data);
             },
             error: function (xhr, textStatus, errorThrown) {
             }
+        });
+    }
+
+    function lineUpPatients(data) {
+        $( ".selectableArea").empty();
+        var cont = _.filter(data, function(elem){
+            return elem.job.status === "Line";
+        });
+
+        // Grab the HTML out of our template tag and pre-compile it.
+        var template = _.template(
+                $( "script.lineUp" ).html()
+        );
+
+        _.each(cont, function(elem){
+            // Render the underscore template and inject it after the H1
+            // in our current DOM.
+            $( ".jobZone" ).append(
+                    template( elem )
+            );
+
         });
     }
 </script>
