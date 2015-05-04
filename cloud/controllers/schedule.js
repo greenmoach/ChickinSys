@@ -28,12 +28,10 @@ exports.show = function(req, res) {
         success: function(schedules) {
         var pq  = new Parse.Query(Patient);
             pq.find().then(function(patients) {
-            console.log('=======patients========' + patients.length);
             for(var i = 0; i < weeks.length; i++) {
                 var perArr = [];
                 for(var j = 0; j < periods.length; j++) {
                     var match = _.filter(schedules, function(item){
-                        console.log('===MATCH===' + _.values(schedules[0]) + '===='+weeks[i]+'=====');
                         return item.get('Day') == weeks[i] && item.get('Period') == periods[j].key;
                     });
 
@@ -48,7 +46,8 @@ exports.show = function(req, res) {
                 }
                 model.push({Day:weeks[i], periods: perArr});
             }
-                res.json(model);
+                //res.json(model);
+                res.render('schedule/show',{therapistId : req.params.id, model : model });
         });
         },
         error: function(error) {
@@ -57,9 +56,6 @@ exports.show = function(req, res) {
         }
 
     });
-
-
-//    res.render('schedule/show',{ therapistId : req.params.id });
 };
 
 exports.assign = function(req, res) {
@@ -99,20 +95,10 @@ exports.update = function(req, res) {
         query.equalTo('TherapistId', req.params.id);
         query.find().then(function(results) {
                 deleteRecursive(results, 0, function() {
-                    _.each(req.body, function(obj){
-                        var schedule = new Schedule();
-                        schedule.save(obj, {
-                            success: function(gameScore) {
-                                // The object was saved successfully.
-                            },
-                            error: function(gameScore, error) {
-                                // The save failed.
-                                // error is a Parse.Error with an error code and message.
-                            }
-                        });
+                    addScheduleRecursive(req.body, 0, function() {
+                        res.json({'code':200,'msg':'Update success'});
                     });
-                    console.log('=========UPDATE DONE=======');
-                    res.json({'code':200,'msg':'Update success'});
+
                 });
             },
             function() {
@@ -120,7 +106,7 @@ exports.update = function(req, res) {
 
             });
     }else {
-
+        res.json({'code':500,'msg':'Schedules data table not ready.'});
     }
 };
 
@@ -133,6 +119,23 @@ var deleteRecursive = function(objects, index, callback) {
     } else {
         objects[index].destroy().then(function() {
             deleteRecursive(objects, index + 1, callback);
+        });
+    }
+}
+
+var addScheduleRecursive = function(objects, index, callback) {
+    if (index >= objects.length) {
+        callback();
+    } else {
+        var schedule = new Schedule();
+        schedule.save(objects[index], {
+            success: function(obj) {
+                addScheduleRecursive(objects, index + 1, callback);
+            },
+            error: function(obj, error) {
+                // The save failed.
+                // error is a Parse.Error with an error code and message.
+            }
         });
     }
 }

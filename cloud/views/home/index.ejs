@@ -1,0 +1,45 @@
+<!-- views/home/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+
+
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+<script>
+    $(function(){
+
+
+    });
+
+
+    function todyPatients() {
+        $.ajax({
+            url: '/schedules/'+ $('#therapistId').val(),
+            contentType: "application/json;charset=utf-8",
+            method: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(currSche),
+            success: function (data, textStatus, jqXHR) {
+                window.location = '/schedule/' + therapist + '/show';
+            },
+            error: function (xhr, textStatus, errorThrown) {
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

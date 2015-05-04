@@ -9,6 +9,7 @@ var _ = require('underscore');
 var therapistController = require('cloud/controllers/therapists.js');
 var patientController = require('cloud/controllers/patients.js');
 var scheduleController = require('cloud/controllers/schedule.js');
+var homeController = require('cloud/controllers/home.js');
 
 
 // Global app configuration section
@@ -52,6 +53,9 @@ app.get('/schedule/:id/show', scheduleController.show);
 app.get('/schedule/:id/assign', scheduleController.assign);
 app.get('/schedule/:id/now', scheduleController.schedules);
 app.post('/schedules/:id', scheduleController.update);
+
+app.get('/', homeController.index);
+app.get('/jobs', homeController.jobs);
 
 
 

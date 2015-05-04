@@ -14,291 +14,39 @@
 </header>
 
 <div class="row">
-    <div class="col-lg-2 col-md-4">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <span class="week-description">Mon.</span>
-            </div>
-            <div class="col-md-12"></div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-4">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <span class="week-description">Tue.</span>
-            </div>
-            <div class="col-md-12"></div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-4">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <span class="week-description">Wed.</span>
-            </div>
-            <div class="col-md-12"></div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-4">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <span class="week-description">Thu.</span>
-            </div>
-            <div class="col-md-12"></div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-4">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <span class="week-description">Fri.</span>
-            </div>
-            <div class="col-md-12"></div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-4">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <span class="week-description">Sat.</span>
-            </div>
-            <div class="col-md-12"></div>
-        </div>
+    <div class="col-md-12">
+        <button class="btn btn-primary btn-block" onclick= <%= "location.href='/schedule/" +  therapistId + "/assign'" %>>修改</button>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-12 text-center">
-        <span class="time-description">08:30 - 09:00 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">09:00 - 09:30 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">09:30 - 10:00 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">10:00 - 10:30 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">10:30 - 11:00 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">11:00 - 11:30 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
+    <% for(var i = 0 ; i< model.length; i++) { %>
+    <div class="col-lg-2 col-md-4">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <span class="week-description"><%= model[i].Day %></span>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                <% for(var j = 0; j < model[i].periods.length; j++) { %>
+                    <div class="col-md-12 text-center">
+                        <span class="time-description"><%= model[i].periods[j].desc%> </span>
+                    </div>
+                    <div class="col-md-12">
+                        <ul>
+                            <% for(var k = 0; k < model[i].periods[j].patients.length; k++) { %>
+                            <li><%= model[i].periods[j].patients[k].get('name') %></li>
+                            <% } %>
+                        </ul>
+                    </div>
+
+                <% } %>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-12 text-center">
-        <span class="time-description">13:30 - 14:00 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">14:00 - 14:30 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">14:30 - 15:00 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">15:00 - 15:30 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">15:30 - 16:00 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">16:00 - 16:30 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-
-
-     /**/
-    <div class="col-md-12 text-center">
-        <span class="time-description">17:30 - 18:00 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">18:00 - 18:30 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">18:30 - 19:00 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">19:00 - 19:30 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">19:30 - 20:00 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">20:00 - 20:30 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-    <div class="col-md-12 text-center">
-        <span class="time-description">20:30 - 21:00 (上午八點到八點半)</span>
-    </div>
-    <div class="col-md-12">
-        <ul>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-            <li>陳大寶</li>
-        </ul>
-    </div>
-</div>
-
+    <% } %>
 
 <footer>
     <% include ../partials/footer %>

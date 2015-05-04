@@ -25,6 +25,69 @@
     <div class="col-md-4"></div>
 </div>
 
+
+<!--Day and the time period picker model-->
+<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="reservationModalLabel">預約時間</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="patientId"/>
+                <form>
+                    <div class="form-group">
+                        <label for="week-name" class="control-label">星期:</label>
+                        <select id="week-name">
+                            <option value="Mon">星期一</option>
+                            <option value="Tue">星期二</option>
+                            <option value="Wed">星期三</option>
+                            <option value="Thu">星期四</option>
+                            <option value="Fri">星期五</option>
+                            <option value="Sat">星期六</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="period-text" class="control-label">時段:</label>
+                        <select id="period-text">
+                            <optgroup label="上午">
+                                <option value="08300900">08:30 - 09:00 (上午八點半到九點)</option>
+                                <option value="09000930">09:00 - 09:30 (上午九點到九點半)</option>
+                                <option value="09301000">09:30 - 10:00 (上午九點半到十點)</option>
+                                <option value="10001030">10:00 - 10:30 (上午十點到十點半)</option>
+                                <option value="10301100">10:30 - 11:00 (上午十點半到十一點)</option>
+                                <option value="11001130">11:00 - 11:30 (上午十一點到十一點半)</option>
+                            </optgroup>
+                            <optgroup label="下午">
+                                <option value="13301400">13:30 - 14:00 (下午一點半到兩點)</option>
+                                <option value="14001430">14:00 - 14:30 (下午兩點到兩點半)</option>
+                                <option value="14301500">14:30 - 15:00 (下午兩點半到三點)</option>
+                                <option value="15001530">15:00 - 15:30 (下午三點到三點半)</option>
+                                <option value="15301600">15:30 - 16:00 (下午三點半到四點)</option>
+                                <option value="16001630">16:00 - 16:30 (下午四點到四點半)</option>
+                            </optgroup>
+                            <optgroup label="晚上">
+                                <option value="17301800">17:30 - 18:00 (晚上五點半到六點)</option>
+                                <option value="18001830">18:00 - 18:30 (晚上六點到六點半)</option>
+                                <option value="18301900">18:30 - 19:00 (晚上六點半到七點)</option>
+                                <option value="19001930">19:00 - 19:30 (晚上七點到七點半)</option>
+                                <option value="19302000">19:30 - 20:00 (晚上七點半到八點)</option>
+                                <option value="20002030">20:00 - 20:30 (晚上八點到八點半)</option>
+                                <option value="20302100">20:30 - 21:00 (晚上八點半到九點)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="EditPa($(this))">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer>
     <% include ../partials/footer %>
 </footer>
@@ -32,6 +95,8 @@
 <script type="text/template" class="selectedItem">
     <div class="col-md-4 contrast">
         <span class="name-circle">{{= name.substr(0,1) }}</span> <h4> {{= name }} </h4>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservationModal"
+                data-who="{{= objectId}}" data-day="{{= Day}}" data-period="{{= Period}}" >修改預約時間</button>
         <button class="btn btn-default" onclick="RmPa(' {{= objectId}} ')">移除</button>
     </div>
 
@@ -41,7 +106,8 @@
 <script type="text/template" class="selectableItem">
     <div class="col-md-4 contrast">
         <span class="name-circle">{{= name.substr(0,1) }}</span> <h4> {{= name }} </h4>
-        <button class="btn btn-default" onclick="AddPa(' {{= objectId}} ')">新增</button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservationModal"
+                data-who="{{= objectId}}" data-day="Mon" data-period="08300900" >新增</button>
     </div>
 
 
@@ -62,10 +128,26 @@
         evaluate: /\{\{(.+?)\}\}/g
     };
 
-    var currSche = null, allPa = null;;
+    var currSche = [], allPa = null;;
 
     $(function() {
         FatchResult();
+
+
+        $('#reservationModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+
+            // Extract info from data-* attributes
+            var who = button.data('who');
+            var day = button.data('day');
+            var period = button.data('period');
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            modal.find('#week-name').val(day);
+            modal.find('#period-text').val(period);
+            modal.find('#patientId').val(who);
+        });
     });
 
     function FatchResult() {
@@ -74,8 +156,9 @@
             method: 'GET',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-
-                currSche = data.sch;
+                _.each(data.sch, function(item){
+                    currSche.push(_.pick(item, 'Day','PatientId','Period','TherapistId'));
+                });
                 allPa = data.pa;
 
                 RenderResult();
@@ -114,20 +197,27 @@
         );
 
         _.each(cont, function(elem){
+            var sche = _.find(currSche, function(itme){
+                return itme.PatientId == elem.objectId;
+            });
+            var extend = _.extend(_.clone(sche), elem);
             // Render the underscore template and inject it after the H1
             // in our current DOM.
             $( ".selectedArea" ).append(
-                    template( elem )
+                    template( extend )
             );
 
         });
     }
 
-    function AddPa(id) {
+    function EditPa(obj) {
         if (currSche == null || allPa == null) {FatchResult();}
         else {
-            currSche.push({'TherapistId': therapist, 'PatientId': id.trim(), 'Day': 'Mon', 'Period': '08300900'});
+            var button  = obj;
+            var modal = button.closest('.modal');
+            currSche.push({'TherapistId': therapist, 'PatientId': modal.find('#patientId').val(), 'Day': modal.find('#week-name').val(), 'Period': modal.find('#period-text').val()});
             RenderResult();
+            $('#reservationModal').modal('hide');
         }
     }
 

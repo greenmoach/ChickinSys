@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93a05f27-e565-442d-9666-08f44986198b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cloud/views/schedule/assign.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cloud/controllers/schedule.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cloud/views/schedule/show.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ChickinSys.iml" afterPath="$PROJECT_DIR$/.idea/ChickinSys.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cloud/controllers/home.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cloud/views/home/index.ejs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cloud/libs/moment.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/index.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/app.js" afterPath="$PROJECT_DIR$/cloud/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/views/schedule/assign.ejs" afterPath="$PROJECT_DIR$/cloud/views/schedule/assign.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/views/partials/footer.ejs" afterPath="$PROJECT_DIR$/cloud/views/partials/footer.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/views/partials/head.ejs" afterPath="$PROJECT_DIR$/cloud/views/partials/head.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/views/therapist/index.ejs" afterPath="$PROJECT_DIR$/cloud/views/therapist/index.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/controllers/schedule.js" afterPath="$PROJECT_DIR$/cloud/controllers/schedule.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cloud/views/schedule/show.ejs" afterPath="$PROJECT_DIR$/cloud/views/schedule/show.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ChickinSys.iws" />
@@ -36,98 +35,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="therapists.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cloud/controllers/therapists.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="35" selection-start="929" selection-end="929" vertical-scroll-proportion="0.0" vertical-offset="71" max-vertical-offset="1005">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="schedule.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="schedule.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cloud/controllers/schedule.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="49" selection-start="2230" selection-end="2230" vertical-scroll-proportion="0.30942184" vertical-offset="311" max-vertical-offset="2145">
+            <state line="28" column="8" selection-start="1550" selection-end="1633" vertical-scroll-proportion="0.0" vertical-offset="761" max-vertical-offset="2190">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assign.ejs" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cloud/views/schedule/assign.ejs">
+      <file leaf-file-name="head.ejs" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cloud/views/partials/head.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="116" column="72" selection-start="3309" selection-end="3309" vertical-scroll-proportion="-59.375" vertical-offset="315" max-vertical-offset="2490">
-              <folding>
-                <marker date="1430390375000" expanded="true" signature="712:898" placeholder="..." />
-                <marker date="1430390375000" expanded="true" signature="1000:1187" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show.ejs" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cloud/views/schedule/show.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="39" selection-start="2158" selection-end="2158" vertical-scroll-proportion="-49.375" vertical-offset="0" max-vertical-offset="4695">
+            <state line="22" column="45" selection-start="959" selection-end="959" vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="420">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.ejs" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cloud/views/patient/index.ejs">
+        <entry file="file://$PROJECT_DIR$/cloud/views/pages/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="4" selection-start="454" selection-end="884" vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="720">
+            <state line="0" column="0" selection-start="0" selection-end="273" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="405">
               <folding>
-                <marker date="1430220670000" expanded="true" signature="443:894" placeholder="{...}" />
+                <marker date="1430205020000" expanded="true" signature="63:272" placeholder="..." />
+                <marker date="1430205020000" expanded="true" signature="70:113" placeholder="..." />
+                <marker date="1430205020000" expanded="true" signature="138:264" placeholder="..." />
+                <marker date="1430205020000" expanded="true" signature="148:195" placeholder="..." />
+                <marker date="1430205020000" expanded="true" signature="208:255" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.ejs" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cloud/views/patient/edit.ejs">
+      <file leaf-file-name="home.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cloud/controllers/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="18" selection-start="1740" selection-end="1740" vertical-scroll-proportion="-15.166667" vertical-offset="266" max-vertical-offset="1200">
+            <state line="37" column="42" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.37366167" vertical-offset="176" max-vertical-offset="1605">
+              <folding>
+                <element signature="e#0#38#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="moment.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cloud/libs/moment.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3082" column="4" selection-start="101018" selection-end="101018" vertical-scroll-proportion="0.0" vertical-offset="5936" max-vertical-offset="46260">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.ejs" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cloud/views/therapist/index.ejs">
+        <entry file="file://$PROJECT_DIR$/cloud/views/home/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="0" selection-end="998" vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="705">
+            <state line="39" column="11" selection-start="790" selection-end="790" vertical-scroll-proportion="-24.375" vertical-offset="0" max-vertical-offset="750">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.ejs" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cloud/views/partials/footer.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="37" selection-start="729" selection-end="729" vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="420">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.ejs" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cloud/views/partials/header.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="6" selection-start="368" selection-end="368" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="210">
               <folding>
-                <marker date="1430298022000" expanded="true" signature="459:913" placeholder="{...}" />
+                <marker date="1430211583000" expanded="true" signature="58:367" placeholder="..." />
+                <marker date="1430211583000" expanded="true" signature="87:360" placeholder="..." />
+                <marker date="1430211583000" expanded="true" signature="188:244" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="patients.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cloud/controllers/patients.js">
+      <file leaf-file-name="global.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/global.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="41" selection-end="117" vertical-scroll-proportion="0.0" vertical-offset="86" max-vertical-offset="1020">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="285">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.ejs" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cloud/views/therapist/edit.ejs">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cloud/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="20" selection-start="1332" selection-end="1568" vertical-scroll-proportion="-21.875" vertical-offset="0" max-vertical-offset="870">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cloud/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="0" selection-start="2047" selection-end="2047" vertical-scroll-proportion="0.0" vertical-offset="191" max-vertical-offset="1155">
+            <state line="6" column="0" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
               <folding />
             </state>
           </provider>
@@ -159,14 +163,17 @@
         <option value="$PROJECT_DIR$/cloud/views/patient/index.ejs" />
         <option value="$PROJECT_DIR$/cloud/views/patient/edit.ejs" />
         <option value="$PROJECT_DIR$/cloud/views/therapist/index.ejs" />
-        <option value="$PROJECT_DIR$/cloud/views/partials/footer.ejs" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/cloud/views/partials/head.ejs" />
-        <option value="$PROJECT_DIR$/cloud/app.js" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/cloud/views/schedule/show.ejs" />
-        <option value="$PROJECT_DIR$/cloud/views/schedule/assign.ejs" />
+        <option value="$PROJECT_DIR$/cloud/views/partials/footer.ejs" />
         <option value="$PROJECT_DIR$/cloud/controllers/schedule.js" />
+        <option value="$PROJECT_DIR$/cloud/views/partials/head.ejs" />
+        <option value="$PROJECT_DIR$/cloud/views/schedule/assign.ejs" />
+        <option value="$PROJECT_DIR$/cloud/views/home/index.ejs" />
+        <option value="$PROJECT_DIR$/cloud/app.js" />
+        <option value="$PROJECT_DIR$/cloud/libs/moment.js" />
+        <option value="$PROJECT_DIR$/cloud/controllers/home.js" />
       </list>
     </option>
   </component>
@@ -202,7 +209,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -234,6 +240,10 @@
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -246,10 +256,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -441,12 +447,53 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChickinSys" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChickinSys" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChickinSys" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChickinSys" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -458,6 +505,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
+    <property name="SearchEverywhereHistory" value="" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -467,6 +515,14 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -477,23 +533,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -521,6 +569,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952183" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16145833" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -530,11 +579,10 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -554,6 +602,89 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/cloud/controllers/therapists.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="35" selection-start="929" selection-end="929" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1005">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/controllers/schedule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="49" selection-start="2230" selection-end="2230" vertical-scroll-proportion="0.0" vertical-offset="600" max-vertical-offset="2145">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/schedule/assign.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="116" column="72" selection-start="3309" selection-end="3309" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="2490">
+          <folding>
+            <marker date="1430724932000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1430724932000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1430724932000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1430724932000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/schedule/show.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="10" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0" vertical-offset="600" max-vertical-offset="825">
+          <folding>
+            <marker date="1430709703000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430709703000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430709703000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/patient/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="4" selection-start="454" selection-end="884" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="720">
+          <folding>
+            <marker date="1430220670000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/patient/edit.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="18" selection-start="1740" selection-end="1740" vertical-scroll-proportion="0.0" vertical-offset="266" max-vertical-offset="1200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/therapist/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="0" selection-end="998" vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="705">
+          <folding>
+            <marker date="1430298022000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/controllers/patients.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="41" selection-end="117" vertical-scroll-proportion="0.0" vertical-offset="86" max-vertical-offset="1020">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/therapist/edit.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="20" selection-start="1332" selection-end="1568" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="870">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="0" selection-start="2047" selection-end="2047" vertical-scroll-proportion="0.0" vertical-offset="191" max-vertical-offset="1155">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/WebStorm7/extLibs/http_github.com_borisyankov_DefinitelyTyped_raw_master_parse_parse.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state line="363" column="8" selection-start="12672" selection-end="12672" vertical-scroll-proportion="0.33333334" vertical-offset="5080" max-vertical-offset="14160">
@@ -592,19 +723,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cloud/views/pages/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="7" selection-start="265" selection-end="265" vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="405" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cloud/views/therapist/new.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="1393" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="825" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cloud/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cloud/views/partials/navigation.ejs">
@@ -612,34 +733,9 @@
         <state line="23" column="6" selection-start="1409" selection-end="1409" vertical-scroll-proportion="-14.375" vertical-offset="0" max-vertical-offset="435" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cloud/views/partials/footer.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="51" selection-start="692" selection-end="692" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="420">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="6" selection-start="191" selection-end="191" vertical-scroll-proportion="0.1124197" vertical-offset="0" max-vertical-offset="1290">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cloud/views/partials/header.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="6" selection-start="368" selection-end="368" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="210">
-          <folding>
-            <marker date="1430211583000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430211583000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430211583000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cloud/views/partials/head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="45" selection-start="944" selection-end="944" vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="420">
           <folding />
         </state>
       </provider>
@@ -665,9 +761,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/therapist/edit.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="20" selection-start="1332" selection-end="1568" vertical-scroll-proportion="-21.875" vertical-offset="0" max-vertical-offset="870">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cloud/views/schedule/show.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="39" selection-start="2158" selection-end="2158" vertical-scroll-proportion="-49.375" vertical-offset="0" max-vertical-offset="4695">
+        <state line="49" column="0" selection-start="1473" selection-end="1473" vertical-scroll-proportion="-30.625" vertical-offset="0" max-vertical-offset="915">
+          <folding>
+            <marker date="1430709703000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430709703000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430709703000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/partials/footer.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="37" selection-start="729" selection-end="729" vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="420">
           <folding />
         </state>
       </provider>
@@ -676,7 +790,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="4" selection-start="454" selection-end="884" vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="720">
           <folding>
-            <marker date="1430220670000" expanded="true" signature="443:894" placeholder="{...}" />
+            <marker date="1430220670000" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -690,55 +804,118 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cloud/views/therapist/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="0" selection-end="998" vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="705">
+        <state line="36" column="8" selection-start="934" selection-end="934" vertical-scroll-proportion="-22.5" vertical-offset="0" max-vertical-offset="705">
           <folding>
-            <marker date="1430298022000" expanded="true" signature="459:913" placeholder="{...}" />
+            <marker date="1430298022000" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cloud/views/therapist/edit.ejs">
+    <entry file="file://$PROJECT_DIR$/cloud/views/partials/header.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="20" selection-start="1332" selection-end="1568" vertical-scroll-proportion="-21.875" vertical-offset="0" max-vertical-offset="870">
+        <state line="8" column="6" selection-start="368" selection-end="368" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="210">
+          <folding>
+            <marker date="1430211583000" expanded="true" signature="58:367" placeholder="..." />
+            <marker date="1430211583000" expanded="true" signature="87:360" placeholder="..." />
+            <marker date="1430211583000" expanded="true" signature="188:244" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/partials/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="45" selection-start="959" selection-end="959" vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="420">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/pages/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="273" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="405">
+          <folding>
+            <marker date="1430205020000" expanded="true" signature="63:272" placeholder="..." />
+            <marker date="1430205020000" expanded="true" signature="70:113" placeholder="..." />
+            <marker date="1430205020000" expanded="true" signature="138:264" placeholder="..." />
+            <marker date="1430205020000" expanded="true" signature="148:195" placeholder="..." />
+            <marker date="1430205020000" expanded="true" signature="208:255" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/schedule/assign.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="234" column="8" selection-start="9460" selection-end="9916" vertical-scroll-proportion="-24.166666" vertical-offset="2930" max-vertical-offset="3840">
+          <folding>
+            <marker date="1430724932000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1430724932000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1430724932000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1430724932000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/views/home/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="11" selection-start="790" selection-end="790" vertical-scroll-proportion="-24.375" vertical-offset="0" max-vertical-offset="750">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/global.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="934">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cloud/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="0" selection-start="2047" selection-end="2047" vertical-scroll-proportion="0.0" vertical-offset="191" max-vertical-offset="1155">
+        <state line="60" column="0" selection-start="2182" selection-end="2182" vertical-scroll-proportion="0.0" vertical-offset="281" max-vertical-offset="1215">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cloud/views/schedule/assign.ejs">
+    <entry file="file://$PROJECT_DIR$/cloud/libs/moment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="72" selection-start="3309" selection-end="3309" vertical-scroll-proportion="-59.375" vertical-offset="315" max-vertical-offset="2490">
-          <folding>
-            <marker date="1430390375000" expanded="true" signature="712:898" placeholder="..." />
-            <marker date="1430390375000" expanded="true" signature="1000:1187" placeholder="..." />
-          </folding>
+        <state line="3082" column="4" selection-start="101018" selection-end="101018" vertical-scroll-proportion="0.0" vertical-offset="5936" max-vertical-offset="46260">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cloud/controllers/patients.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="41" selection-end="117" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1020">
+        <state line="31" column="52" selection-start="832" selection-end="872" vertical-scroll-proportion="0.4057816" vertical-offset="86" max-vertical-offset="1020">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cloud/controllers/therapists.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="35" selection-start="929" selection-end="929" vertical-scroll-proportion="0.0" vertical-offset="71" max-vertical-offset="1005">
+        <state line="4" column="0" selection-start="71" selection-end="120" vertical-scroll-proportion="0.06423983" vertical-offset="0" max-vertical-offset="1005">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cloud/controllers/schedule.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="49" selection-start="2230" selection-end="2230" vertical-scroll-proportion="0.30942184" vertical-offset="311" max-vertical-offset="2145">
+        <state line="28" column="8" selection-start="1550" selection-end="1633" vertical-scroll-proportion="0.0" vertical-offset="761" max-vertical-offset="2190">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cloud/controllers/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="42" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.37366167" vertical-offset="176" max-vertical-offset="1605">
+          <folding>
+            <element signature="e#0#38#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
