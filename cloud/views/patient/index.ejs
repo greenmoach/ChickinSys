@@ -26,7 +26,6 @@
         <h4> <%= patient.get('name') %> </h4>
         <h4> <%= patient.get('sex') %> </h4>
         <h4> <%= patient.get('kind') %> </h4>
-        <h4> <%= patient.get('point') %> </h4>
         <h4> <%= patient.get('diagnosis') %> </h4>
         <h4> <%= formatTime(patient.createdAt) %> </h4>
         <a class="btn btn-default" href="<%= '/patients/' + patient.id + '/edit' %>" role="button">修改</a>

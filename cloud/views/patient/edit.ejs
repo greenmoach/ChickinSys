@@ -19,36 +19,107 @@
             <div class="form-group">
                 <label for="inputName" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputName" name="name" value ="<%= patient.get('name') %>" >
+                    <input type="text" class="form-control" id="inputName" name="name" value ="<%= patient.get('name') %>">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">性別</label>
-                <label class="radio-inline">
-                    <input type="radio" name="sex" id="inlineRadio1" value="male" <%= patient.get('sex') == 'male' ? 'checked' : '' %>> 男
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="sex" id="inlineRadio2" value="female" <%= patient.get('sex') == 'female' ? 'checked' : '' %>> 女
-                </label>
+                <label class="col-sm-2 control-label">性別</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" id="inlineRadio1" value="male" <%= patient.get('sex') == 'male' ? 'checked' : '' %>> 男
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" id="inlineRadio2" value="female" <%= patient.get('sex') == 'female' ? 'checked' : '' %>> 女
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputBDay" class="col-sm-2 control-label">生日</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputBDay" name="bDay" value ="<%= patient.get('bDay') %>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputChartNo" class="col-sm-2 control-label">病歷號</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputChartNo" name="chartNo" value ="<%= patient.get('chartNo') %>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">科別</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="division" id="inlineDivision1" value="Neuro" <%= patient.get('division') == 'Neuro' ? 'checked' : '' %>> 神經科
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="division" id="inlineDivision2" value="Ortho" <%= patient.get('division') == 'Ortho' ? 'checked' : '' %>> 骨科
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">狀態</label>
                 <div class="col-sm-10">
-                    <select class="form-control" name="kind">
-                        <option value="住院" <%= patient.get('kind') == '住院' ? 'selected' : '' %>>住院</option>
-                        <option value="OPD" <%= patient.get('kind') == 'OPD' ? 'selected' : '' %>>OPD</option>
-                    </select>
+                    <label class="radio-inline">
+                        <input type="radio" name="kind" value="Outpatient" <%= patient.get('kind') == 'Outpatient' ? 'checked' : '' %>> 門診
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="kind" value="Inpatient" <%= patient.get('kind') == 'Inpatient' ? 'checked' : '' %>> 住院
+                    </label>
+
                 </div>
 
             </div>
             <div class="form-group">
-                <label for="inputPoint" class="col-sm-2 control-label">點數</label>
+                <label for="insurancePoint" class="col-sm-2 control-label">健保點數</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPoint" name="point" value="<%= patient.get('point') %>">
+                    <label class="radio-inline">
+                        <input type="radio" name="insurancePoint" value="1" <%= patient.get('insurancePoint') == 1 ? 'checked' : '' %>> 1
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="insurancePoint" value="2" <%= patient.get('insurancePoint') == 2 ? 'checked' : '' %>> 2
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="insurancePoint" value="3" <%= patient.get('insurancePoint') == 3 ? 'checked' : '' %>> 3
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="insurancePoint" value="4" <%= patient.get('insurancePoint') == 4 ? 'checked' : '' %>> 4
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="insurancePoint" value="5" <%= patient.get('insurancePoint') == 5 ? 'checked' : '' %>> 5
+                    </label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="taDiagnosis" class="col-sm-2 control-label">診斷</label>
+                <label id="lbiInnerPoint" for="innerPoint" class="col-sm-2 control-label">院內點數</label>
+                <% if (patient.get('division') == 'Neuro') { %>
+                <fieldset id="fsNeuroInnerPoint" class="col-sm-10" >
+                    <label class="radio-inline">
+                        <input type="radio" name="innerPoint" value="1" <%= patient.get('innerPoint') == 1 ? 'checked' : '' %>> 1
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="innerPoint" value="2" <%= patient.get('innerPoint') == 2 ? 'checked' : '' %>> 2
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="innerPoint" value="3" <%= patient.get('innerPoint') == 3 ? 'checked' : '' %>> 3
+                    </label>
+                </fieldset>
+                <% } else { %>
+                <fieldset class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="innerPoint" value="1" <%= patient.get('innerPoint') == 1 ? 'checked' : '' %>> 1
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="innerPoint" value="1.5" <%= patient.get('innerPoint') == 1.5 ? 'checked' : '' %>> 1.5
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="innerPoint" value="2.5" <%= patient.get('innerPoint') == 2.5 ? 'checked' : '' %>> 2.5
+                    </label>
+                </fieldset>
+
+                <% } %>
+            </div>
+            <div class="form-group">
+                <label for="taDiagnosis" class="col-sm-2 control-label">治療項目</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" rows="6" id="taDiagnosis" name="diagnosis"><%= patient.get('diagnosis') %></textarea>
                 </div>
@@ -70,6 +141,79 @@
 <footer>
     <% include ../partials/footer %>
 </footer>
+
+<script type="text/template" class="NeuroInnerPoint">
+    <fieldset id="fsNeuroInnerPoint" class="col-sm-10">
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="1" checked> 1
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="2"> 2
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="3"> 3
+        </label>
+    </fieldset>
+</script>
+
+<script type="text/template" class="OrthoInnerPoint">
+    <fieldset class="col-sm-10">
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="1" checked> 1
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="1.5"> 1.5
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="2.5"> 2.5
+        </label>
+    </fieldset>
+</script>
+
+<script>
+    _.templateSettings = {
+        interpolate: /\{\{\=(.+?)\}\}/g,
+        evaluate: /\{\{(.+?)\}\}/g
+    };
+
+    $(function() {
+        $('input[type=radio][name=division]').change(function() {
+            $('#lbiInnerPoint ~ fieldset').remove();
+            if (this.value == 'Ortho') {
+                var template = _.template(
+                        $( "script.OrthoInnerPoint" ).html()
+                );
+                $('#lbiInnerPoint').after(template());
+            }
+            else if (this.value == 'Neuro') {
+                var template = _.template(
+                        $( "script.NeuroInnerPoint" ).html()
+                );
+                $('#lbiInnerPoint').after(template());
+                if ($('input[type=radio][name=kind]:checked').val() === 'Inpatient') {
+                    $('input[type=radio][name=innerPoint][value=3]').prop('checked', 'checked');
+                    $('#fsNeuroInnerPoint').prop('disabled', true);
+                }else {
+                    $('#fsNeuroInnerPoint').prop('disabled', false);
+                }
+            }
+        });
+
+        $('input[type=radio][name=kind]').change(function() {
+            if(this.value == 'Outpatient') {
+                $('#fsNeuroInnerPoint').prop('disabled', false);
+            }else if (this.value == 'Inpatient') {
+                if ($('input[type=radio][name=division]:checked').val() === 'Neuro') {
+                    $('input[type=radio][name=innerPoint][value=3]').prop('checked', 'checked');
+                    $('#fsNeuroInnerPoint').prop('disabled', true);
+                }else {
+                    $('#fsNeuroInnerPoint').prop('disabled', false);
+                }
+            }
+
+        });
+    });
+</script>
 
 </body>
 </html>

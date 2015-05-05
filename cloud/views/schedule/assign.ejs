@@ -96,7 +96,7 @@
     <div class="col-md-4 contrast">
         <span class="name-circle">{{= name.substr(0,1) }}</span> <h4> {{= name }} </h4>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservationModal"
-                data-who="{{= objectId}}" data-day="{{= Day}}" data-period="{{= Period}}" >修改預約時間</button>
+                data-who="{{= objectId}}" data-day="{{= day}}" data-period="{{= period}}" >修改預約時間</button>
         <button class="btn btn-default" onclick="RmPa(' {{= objectId}} ')">移除</button>
     </div>
 
@@ -157,7 +157,7 @@
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
                 _.each(data.sch, function(item){
-                    currSche.push(_.pick(item, 'Day','PatientId','Period','TherapistId'));
+                    currSche.push(_.pick(item, 'day','patientId','period','therapistId'));
                 });
                 allPa = data.pa;
 
@@ -171,7 +171,7 @@
     function RenderResult() {
         $( ".selectableArea").empty();
         var cont = _.filter(allPa, function(elem){
-            return _.findIndex(currSche, {PatientId: elem.objectId}) == -1;
+            return _.findIndex(currSche, {patientId: elem.objectId}) == -1;
         });
         // Grab the HTML out of our template tag and pre-compile it.
         var template = _.template(
@@ -189,7 +189,7 @@
 
         $( ".selectedArea").empty();
         cont = _.filter(allPa, function(elem){
-            return _.findIndex(currSche, {PatientId: elem.objectId}) != -1;
+            return _.findIndex(currSche, {patientId: elem.objectId}) != -1;
         });
 
         template = _.template(
@@ -198,7 +198,7 @@
 
         _.each(cont, function(elem){
             var sche = _.find(currSche, function(itme){
-                return itme.PatientId == elem.objectId;
+                return itme.patientId == elem.objectId;
             });
             var extend = _.extend(_.clone(sche), elem);
             // Render the underscore template and inject it after the H1
@@ -215,7 +215,7 @@
         else {
             var button  = obj;
             var modal = button.closest('.modal');
-            currSche.push({'TherapistId': therapist, 'PatientId': modal.find('#patientId').val(), 'Day': modal.find('#week-name').val(), 'Period': modal.find('#period-text').val()});
+            currSche.push({'therapistId': therapist, 'patientId': modal.find('#patientId').val(), 'day': modal.find('#week-name').val(), 'period': modal.find('#period-text').val()});
             RenderResult();
             $('#reservationModal').modal('hide');
         }
@@ -224,7 +224,7 @@
     function RmPa(id) {
         if (currSche == null || allPa == null) {FatchResult();}
         else {
-            currSche = _.filter(currSche, function(item){ return item.PatientId != id.trim() });
+            currSche = _.filter(currSche, function(item){ return item.patientId != id.trim() });
             RenderResult();
         }
     }

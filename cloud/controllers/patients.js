@@ -5,7 +5,7 @@
 var _ = require('underscore');
 var Patient = Parse.Object.extend('Patient');
 
-// Display all therapists
+// Display all patients
 exports.index = function(req, res) {
     var query = new Parse.Query('Patient');
     query.find().then(function(results){
@@ -16,16 +16,16 @@ exports.index = function(req, res) {
         });
 };
 
-// Display a form for creating a new therapist
+// Display a form for creating a new patient
 exports.new = function(req, res) {
     res.render('patient/new', {});
 };
 
-// Create a new therapist
+// Create a new patient
 exports.create = function(req, res) {
     var patient = new Patient();
 
-    patient.save(_.pick(req.body, 'name', 'sex', 'kind', 'point', 'diagnosis')).then(function() {
+    patient.save(_.pick(req.body, 'name', 'sex','bDay', 'chartNo', 'division','kind', 'insurancePoint', 'innerPoint', 'diagnosis')).then(function() {
             res.redirect('/patient');
         },
         function() {
@@ -33,7 +33,7 @@ exports.create = function(req, res) {
         });
 };
 
-// Display a form for editing a specified therapist.
+// Display a form for editing a specified patient.
 exports.edit = function(req, res) {
     var query = new Parse.Query(Patient);
     query.get(req.params.id).then(function(patient) {
@@ -50,11 +50,11 @@ exports.edit = function(req, res) {
         });
 };
 
-// Update a therapist based on specified id, name and sex.
+// Update a therapist based on patient id, name and sex etc..
 exports.update = function(req, res) {
     var patient = new Patient();
     patient.id = req.params.id;
-    patient.save(_.pick(req.body, 'name', 'sex', 'kind', 'point', 'diagnosis')).then(function() {
+    patient.save(_.pick(req.body, 'name', 'sex','bDay', 'chartNo', 'division','kind', 'insurancePoint', 'innerPoint', 'diagnosis')).then(function() {
             res.redirect('/patient');
         },
         function() {

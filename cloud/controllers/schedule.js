@@ -23,7 +23,7 @@ exports.show = function(req, res) {
 
     var model = [];
     var query = new Parse.Query(Schedule);
-    query.equalTo('TherapistId', req.params.id);
+    query.equalTo('therapistId', req.params.id);
     query.find({
         success: function(schedules) {
         var pq  = new Parse.Query(Patient);
@@ -32,13 +32,13 @@ exports.show = function(req, res) {
                 var perArr = [];
                 for(var j = 0; j < periods.length; j++) {
                     var match = _.filter(schedules, function(item){
-                        return item.get('Day') == weeks[i] && item.get('Period') == periods[j].key;
+                        return item.get('day') == weeks[i] && item.get('period') == periods[j].key;
                     });
 
                     var patsArr = [];
                     _.each(match, function(item){
                         var patient = _.find(patients, function(pa){
-                            return pa.id == item.get('PatientId');
+                            return pa.id == item.get('patientId');
                         });
                         patsArr.push(patient);
                     });
@@ -66,7 +66,7 @@ exports.schedules = function(req, res) {
     try {
         var query = new Parse.Query(Schedule);
         if(typeof(query) !== 'undefined') {
-            query.equalTo('TherapistId', req.params.id);
+            query.equalTo('therapistId', req.params.id);
             query.find({
                 success: function(schedules) {
                     var query  = new Parse.Query(Patient);
@@ -92,7 +92,7 @@ exports.schedules = function(req, res) {
 exports.update = function(req, res) {
     var query = new Parse.Query(Schedule);
     if(typeof(query) !== 'undefined') {
-        query.equalTo('TherapistId', req.params.id);
+        query.equalTo('therapistId', req.params.id);
         query.find().then(function(results) {
                 deleteRecursive(results, 0, function() {
                     addScheduleRecursive(req.body, 0, function() {

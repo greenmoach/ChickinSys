@@ -19,36 +19,92 @@
             <div class="form-group">
                 <label for="inputName" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputName" name="name" placeholder="請輸入病患名字">
+                    <input type="text" class="form-control" id="inputName" name="name" placeholder="請輸入名字">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">性別</label>
-                <label class="radio-inline">
-                    <input type="radio" name="sex" id="inlineRadio1" value="male" checked> 男
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="sex" id="inlineRadio2" value="female"> 女
-                </label>
+                <label class="col-sm-2 control-label">性別</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" id="inlineRadio1" value="male" checked> 男
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" id="inlineRadio2" value="female"> 女
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputBDay" class="col-sm-2 control-label">生日</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputBDay" name="bDay" placeholder="請輸入生日">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputChartNo" class="col-sm-2 control-label">病歷號</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputChartNo" name="chartNo" placeholder="請輸入病歷號">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">科別</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="division" id="inlineDivision1" value="Neuro" checked> 神經科
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="division" id="inlineDivision2" value="Ortho"> 骨科
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">狀態</label>
                 <div class="col-sm-10">
-                    <select class="form-control" name="kind">
-                        <option value="住院">住院</option>
-                        <option value="OPD">OPD</option>
-                    </select>
+                    <label class="radio-inline">
+                        <input type="radio" name="kind" value="Outpatient" checked> 門診
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="kind" value="Inpatient"> 住院
+                    </label>
+
                 </div>
 
             </div>
             <div class="form-group">
-                <label for="inputPoint" class="col-sm-2 control-label">點數</label>
+                <label for="insurancePoint" class="col-sm-2 control-label">健保點數</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPoint" name="point" placeholder="">
+                    <label class="radio-inline">
+                        <input type="radio" name="insurancePoint" value="1" checked> 1
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="insurancePoint" value="2"> 2
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="insurancePoint" value="3"> 3
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="insurancePoint" value="4"> 4
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="insurancePoint" value="5"> 5
+                    </label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="taDiagnosis" class="col-sm-2 control-label">診斷</label>
+                <label id="lbiInnerPoint" for="innerPoint" class="col-sm-2 control-label">院內點數</label>
+                <fieldset id="fsNeuroInnerPoint" class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="innerPoint" value="1" checked> 1
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="innerPoint" value="2"> 2
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="innerPoint" value="3"> 3
+                    </label>
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <label for="taDiagnosis" class="col-sm-2 control-label">治療項目</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" rows="6" id="taDiagnosis" name="diagnosis"></textarea>
                         </div>
@@ -62,11 +118,83 @@
     </div>
 </section>
 
-
-
 <footer>
     <% include ../partials/footer %>
 </footer>
+
+<script type="text/template" class="NeuroInnerPoint">
+    <fieldset id="fsNeuroInnerPoint" class="col-sm-10">
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="1" checked> 1
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="2"> 2
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="3"> 3
+        </label>
+    </fieldset>
+</script>
+
+<script type="text/template" class="OrthoInnerPoint">
+    <fieldset class="col-sm-10">
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="1" checked> 1
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="1.5"> 1.5
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="innerPoint" value="2.5"> 2.5
+        </label>
+    </fieldset>
+</script>
+
+<script>
+    _.templateSettings = {
+        interpolate: /\{\{\=(.+?)\}\}/g,
+        evaluate: /\{\{(.+?)\}\}/g
+    };
+
+    $(function() {
+        $('input[type=radio][name=division]').change(function() {
+            $('#lbiInnerPoint ~ fieldset').remove();
+            if (this.value == 'Ortho') {
+                var template = _.template(
+                        $( "script.OrthoInnerPoint" ).html()
+                );
+                $('#lbiInnerPoint').after(template());
+            }
+            else if (this.value == 'Neuro') {
+                var template = _.template(
+                        $( "script.NeuroInnerPoint" ).html()
+                );
+                $('#lbiInnerPoint').after(template());
+                if ($('input[type=radio][name=kind]:checked').val() === 'Inpatient') {
+                    $('input[type=radio][name=innerPoint][value=3]').prop('checked', 'checked');
+                    $('#fsNeuroInnerPoint').prop('disabled', true);
+                }else {
+                    $('#fsNeuroInnerPoint').prop('disabled', false);
+                }
+            }
+        });
+
+        $('input[type=radio][name=kind]').change(function() {
+            if(this.value == 'Outpatient') {
+                $('#fsNeuroInnerPoint').prop('disabled', false);
+            }else if (this.value == 'Inpatient') {
+                if ($('input[type=radio][name=division]:checked').val() === 'Neuro') {
+                    $('input[type=radio][name=innerPoint][value=3]').prop('checked', 'checked');
+                    $('#fsNeuroInnerPoint').prop('disabled', true);
+                }else {
+                    $('#fsNeuroInnerPoint').prop('disabled', false);
+                }
+            }
+
+        });
+    });
+</script>
+
 
 </body>
 </html>
