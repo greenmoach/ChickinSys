@@ -1,24 +1,145 @@
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+<nav class="menu" id="menu">
+    <div class="menu-scroll">
+        <div class="menu-wrap">
+            <div class="menu-content">
+                <ul class="nav">
+                    <li class="active">
+                        <a href="ui-card.html">Cards</a>
+                    </li>
+                    <li>
+                        <a href="ui-collapse.html">Collapsible Regions</a>
+                    </li>
+                    <li>
+                        <a href="ui-dropdown.html">Dropdowns</a>
+                    </li>
+                    <li>
+                        <a href="ui-modal.html">Modals &amp; Toasts</a>
+                    </li>
+                    <li>
+                        <a href="ui-nav.html">Navs</a>
+                    </li>
+                    <li>
+                        <a href="ui-progress.html">Progress Bars</a>
+                    </li>
+                    <li>
+                        <a href="ui-tab.html">Tabs</a>
+                    </li>
+                    <li>
+                        <a href="ui-tile.html">Tiles</a>
+                    </li>
+                </ul>
+                <hr>
+                <ul class="nav">
+                    <li>
+                        <a href="ui-button.html">Buttons</a>
+                    </li>
+                    <li>
+                        <a href="ui-form.html">Form Elements</a>
+                        <span class="menu-collapse-toggle collapsed" data-target="#form-elements" data-toggle="collapse"><i class="icon icon-close menu-collapse-toggle-close"></i><i class="icon icon-add menu-collapse-toggle-default"></i></span>
+                        <ul class="menu-collapse collapse" id="form-elements">
+                            <li>
+                                <a href="ui-form-adv.html">Form Elements <small>(materialised)</small></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="ui-icon.html">Icons</a>
+                    </li>
+                    <li>
+                        <a href="ui-table.html">Tables</a>
+                    </li>
+                </ul>
+                <hr>
+                <ul class="nav">
+                    <li>
+                        <a href="page-affix.html">Full-Width Page <small>(with fixed LHC/RHC)</small></a>
+                    </li>
+                    <li>
+                        <a href="page-palette.html">Page Palettes</a>
+                        <span class="menu-collapse-toggle collapsed" data-target="#page-palettes" data-toggle="collapse"><i class="icon icon-close menu-collapse-toggle-close"></i><i class="icon icon-add menu-collapse-toggle-default"></i></span>
+                        <ul class="menu-collapse collapse" id="page-palettes">
+                            <li>
+                                <a href="page-palette-blue.html">Blue Palette</a>
+                            </li>
+                            <li>
+                                <a href="page-palette-green.html">Green Palette</a>
+                            </li>
+                            <li>
+                                <a href="page-palette-purple.html">Purple Palette</a>
+                            </li>
+                            <li>
+                                <a href="page-palette-red.html">Red Palette</a>
+                            </li>
+                            <li>
+                                <a href="page-palette-yellow.html">Yellow Palette</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <span class="navbar-header page-scroll"><a class="navbar-brand page-scroll" href="#page-top">FIVE</a></span>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden"> <a href="#page-top"></a> </li>
-                <li> <a class="page-scroll" href="#services">Services</a> </li>
-                <li> <a class="page-scroll" href="#portfolio">Portfolio</a> </li>
-                <li> <a class="page-scroll" href="#about">About</a> </li>
-                <li> <a class="page-scroll" href="#team">Team</a> </li>
-                <li> <a class="page-scroll" href="#contact">Contact</a> </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container-fluid -->
 </nav>
+<nav class="menu menu-right" id="profile">
+    <div class="menu-scroll">
+        <div class="menu-wrap">
+            <div class="menu-top">
+                <div class="menu-top-img">
+                    <img alt="John Smith" src="images/samples/landscape.jpg">
+                </div>
+                <div class="menu-top-info">
+                    <a class="menu-top-user" href="javascript:void(0)"><span class="avatar pull-left"><img alt="alt text for John Smith avatar" src="images/users/avatar-001.jpg"></span>John Smith</a>
+                </div>
+            </div>
+            <div class="menu-content">
+                <ul class="nav">
+                    <li>
+                        <a href="javascript:void(0)"><span class="icon icon-account-box"></span>Profile Settings</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><span class="icon icon-add-to-photos"></span>Upload Photo</a>
+                    </li>
+                    <li>
+                        <a href="page-login.html"><span class="icon icon-exit-to-app"></span>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="menu menu-right menu-search" id="search">
+    <div class="menu-scroll">
+        <div class="menu-wrap">
+            <div class="menu-top">
+                <div class="menu-top-info">
+                    <form class="menu-top-form">
+                        <label class="access-hide" for="menu-search">Search</label>
+                        <input class="form-control form-control-inverse menu-search-focus" id="menu-search" placeholder="Search" type="search">
+                        <button class="access-hide" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            <div class="menu-content">
+                <div class="menu-content-inner">
+                    <p><strong>Saved Search Queries:</strong></p>
+                    <ul>
+                        <li><a href="javascript:void(0)">lorem ipsum dolor sit amet</a></li>
+                        <li><a href="javascript:void(0)">consectetur adipiscing elit</a></li>
+                        <li><a href="javascript:void(0)">sed ornare orci lorem</a></li>
+                        <li><a href="javascript:void(0)">vel eleifend elit tempor eleifend</a></li>
+                        <li><a href="javascript:void(0)">morbi feugiat aliquet justo</a></li>
+                    </ul>
+                    <hr>
+                    <p><strong>Popular Search Queries:</strong></p>
+                    <ul>
+                        <li><a href="javascript:void(0)">id ullamcorper tortor lobortis eu</a></li>
+                        <li><a href="javascript:void(0)">aliquam ut tellus arcu</a></li>
+                        <li><a href="javascript:void(0)">cestibulum tortor purus</a></li>
+                        <li><a href="javascript:void(0)">pretium ac dolor id</a></li>
+                        <li><a href="javascript:void(0)">gravida molestie libero</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
