@@ -36,14 +36,19 @@
 
 <div class="fbtn-container">
     <div class="fbtn-inner">
-        <a class="fbtn fbtn-red" href="https://github.com/Daemonite/material"><span class="fbtn-text">Fork me on GitHub</span><span class="fa fa-github"></span></a>
+        <a class="fbtn fbtn-red fbtn-lg waves-circle waves-effect waves-light" data-toggle="dropdown" title="Upload"><span class="access-hide">Action</span><span class="fbtn-ori icon icon-add"></span><span class="fbtn-sub icon icon-edit"></span></a>
+        <div class="fbtn-dropdown">
+            <a class="fbtn fbtn-blue" href="javascript:void(0)"><span class="fbtn-text">未報到</span><span class="icon icon-mic"></span></a>
+            <a class="fbtn fbtn-green" href="javascript:void(0)"><span class="fbtn-text">已報到</span><span class="icon icon-image"></span></a>
+            <a class="fbtn fbtn-yellow" href="javascript:void(0)"><span class="fbtn-text">請假</span><span class="icon icon-videocam"></span></a>
+        </div>
     </div>
 </div>
 
 <script type="text/template" class="lineUp">
     <div class="col-md-4 contrast">
         <span class="name-circle">{{= pa.name.substr(0,1) }}</span> <h4> {{= pa.name }} </h4>
-
+        <button onclick=""></button>
     </div>
 
 </script>
@@ -60,6 +65,7 @@
 
     });
 
+    var jobData = null;
 
     function todyPatients() {
         $.ajax({
@@ -68,6 +74,7 @@
             method: 'GET',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
+                jobData = data;
                 lineUpPatients(data);
             },
             error: function (xhr, textStatus, errorThrown) {

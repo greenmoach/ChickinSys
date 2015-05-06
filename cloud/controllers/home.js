@@ -14,6 +14,7 @@ exports.index = function(req, res) {
 };
 
 exports.jobs = function(req, res) {
+    var day_list = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     var today = new Date();
     today.setHours(0,0,0,0)
     var query = new Parse.Query("DailyJob");
@@ -21,7 +22,8 @@ exports.jobs = function(req, res) {
     query.find().then(function( models ){
             if (models.length == 0) {
                 GenJobs({ success: function(){
-                    query.equalTo("therapistId", 'JHhMj3tLEf')
+                    query.equalTo("day", day_list[today.getDay()]);
+                    query.equalTo("therapistId", 'OYnzMphxij');
                     query.find().then(function(jobs) {
                         var dailyJobs = [];
                         var pq  = new Parse.Query(Patient);
@@ -34,8 +36,6 @@ exports.jobs = function(req, res) {
                             });
                             res.json(dailyJobs);
                         });
-
-
                     });
                 },
                     error: function(error) {
@@ -43,7 +43,8 @@ exports.jobs = function(req, res) {
                     }});
             }
             else {
-                query.equalTo("therapistId", 'JHhMj3tLEf')
+                query.equalTo("day", day_list[today.getDay()]);
+                query.equalTo("therapistId", 'OYnzMphxij');
                 query.find().then(function(jobs) {
                     var dailyJobs = [];
                     var pq  = new Parse.Query(Patient);
@@ -56,8 +57,6 @@ exports.jobs = function(req, res) {
                         });
                         res.json(dailyJobs);
                     });
-
-
                 });
             }
         },
@@ -65,7 +64,6 @@ exports.jobs = function(req, res) {
             res.send(500, error.message );
         }
     );
-
 };
 
 var GenJobs = function(callback) {

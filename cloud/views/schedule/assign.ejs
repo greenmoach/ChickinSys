@@ -60,13 +60,13 @@
 
 <!--Day and the time period picker model-->
 <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xs">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-heading">
+                <a class="modal-close" data-dismiss="modal">&times;</a>
                 <h4 class="modal-title" id="reservationModalLabel">預約時間</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-inner">
                 <input type="hidden" id="patientId"/>
                 <form>
                     <div class="form-group">
@@ -112,9 +112,12 @@
                     </div>
                 </form>
             </div>
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" onclick="EditPa($(this))">確定</button>
+                <p class="text-right">
+                    <button class="btn btn-flat btn-alt" data-dismiss="modal" type="button">取消</button>
+                    <button class="btn btn-flat btn-alt" data-dismiss="modal" type="button" onclick="EditPa($(this))">確定</button>
+                </p>
             </div>
         </div>
     </div>
@@ -247,9 +250,19 @@
         else {
             var button  = obj;
             var modal = button.closest('.modal');
-            currSche.push({'therapistId': therapist, 'patientId': modal.find('#patientId').val(), 'day': modal.find('#week-name').val(), 'period': modal.find('#period-text').val()});
+            var patientid = modal.find('#patientId').val();
+            var day = modal.find('#week-name').val();
+            var period = modal.find('#period-text').val();
+            var idx = _.findIndex(currSche, {patientId: patientid});
+
+            if (idx === -1) {
+                currSche.push({'therapistId': therapist, 'patientId': patientid, 'day': day, 'period': period});
+            }else {
+                currSche[idx].day = day;
+                currSche[idx].period = period;
+            }
+
             RenderResult();
-            $('#reservationModal').modal('hide');
         }
     }
 

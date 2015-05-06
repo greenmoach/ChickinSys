@@ -28,8 +28,8 @@ exports.create = function(req, res) {
     patient.save(_.pick(req.body, 'name', 'sex','bDay', 'chartNo', 'division','kind', 'insurancePoint', 'innerPoint', 'diagnosis')).then(function() {
             res.redirect('/patient');
         },
-        function() {
-            res.send(500, 'Failed saving therapist');
+        function(error) {
+            res.send(500, 'Failed saving patient: ' + error.message);
         });
 };
 

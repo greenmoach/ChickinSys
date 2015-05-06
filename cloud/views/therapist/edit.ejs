@@ -36,30 +36,36 @@
         </div>
     </div>
     <div class="content-inner">
-        <div class="container container-full">
+        <div class="container">
             <form class='form-horizontal' method='post' action=<%= '/therapist/' + therapist.id  %> >
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" value="<%= therapist.get('name') %>">
+                <div class="form-group form-group-label">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-8">
+                            <label for="inputName" class="floating-label">姓名</label>
+
+                            <input type="text" class="form-control" id="inputName" name="name" value="<%= therapist.get('name') %>">
+
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">性別</label>
-                    <label class="radio-inline">
-                        <input type="radio" name="sex" id="inlineRadio1" value="male" <%= therapist.get('sex') == 'male' ? 'checked' : '' %>> 男
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="sex" id="inlineRadio2" value="female" <%= therapist.get('sex') == 'female' ? 'checked' : '' %>> 女
-                    </label>
+                    <div class="radio radio-adv radio-inline">
+                        <label for="input-radio-1">
+                            <input class="access-hide" id="input-radio-1" name="sex" type="radio" value="male" <%= therapist.get('sex') == 'male' ? 'checked' : '' %>> 男
+                        </label>
+                    </div>
+                    <div class="radio radio-adv radio-inline">
+                        <label for="input-radio-2">
+                            <input class="access-hide" id="input-radio-2" name="sex" type="radio" value="female" <%= therapist.get('sex') == 'female' ? 'checked' : '' %>> 女
+                        </label>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <!-- This hidden element causes express.methodOverride middleware to override
+                <div class="form-group-btn">
+                    <!-- This hidden element causes express.methodOverride middleware to override
                         the HTTP method from post to put for a truly RESTful interface. -->
-                        <input type='hidden' name='_method' value='put' />
-                        <button type="submit" class="btn btn-default">修改</button>
-                    </div>
+                    <input type='hidden' name='_method' value='put' />
+                    <button class="btn btn-blue waves-button waves-light waves-effect" type="submit">修改</button>
+                    <button class="btn waves-button waves-effect" type="button" onclick="window.location='/therapist'">取消</button>
                 </div>
             </form>
         </div>
