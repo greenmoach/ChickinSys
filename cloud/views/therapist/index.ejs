@@ -13,26 +13,45 @@
     <% include ../partials/header %>
 </header>
 
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2 class="session-heading">Physical Therapist</h2>
-        <div class="line"></div>
+<div class="content">
+    <div class="content-heading">
+        <div class="container container-full">
+            <div class="row">
+                <div class="col-lg-6 col-lg-push-3 col-sm-10">
+                    <h1 class="heading">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="/">HOME</a>
+                            </li>
+                            <li  class="active">
+                                <a href="/therapist">THERAPISTS</a>
+                            </li>
+                        </ul>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-inner">
+        <div class="container container-full">
+            <div class="row">
+                <% therapists.forEach(function(therapist){   %>
+                <div class="col-md-4">
+                    <h4> <%= therapist.get('name') %> </h4>
+                    <h4> <%= therapist.get('sex') %> </h4>
+                    <h4> <%= formatTime(therapist.createdAt) %> </h4>
+
+                    <a class="btn btn-default" href="<%= '/therapist/' + therapist.id + '/edit' %>" role="button">修改</a>
+                    <a class="btn btn-default" href="<%= '/schedule/' + therapist.id + '/show' %>" role="button">病患</a>
+                </div>
+
+                <% }) %>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <% therapists.forEach(function(therapist){   %>
-        <div class="col-md-4">
-            <h4> <%= therapist.get('name') %> </h4>
-            <h4> <%= therapist.get('sex') %> </h4>
-            <h4> <%= formatTime(therapist.createdAt) %> </h4>
 
-            <a class="btn btn-default" href="<%= '/therapists/' + therapist.id + '/edit' %>" role="button">修改</a>
-            <a class="btn btn-default" href="<%= '/schedule/' + therapist.id + '/show' %>" role="button">病患</a>
-        </div>
-
-    <% }) %>
-</div>
 
 <footer>
     <% include ../partials/footer %>

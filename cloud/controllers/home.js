@@ -75,15 +75,17 @@ var GenJobs = function(callback) {
             query.find().then(function(patiens) {
                     _.each(schedules, function(sche) {
                         var fPat = _.find(patiens, function(pat){
-                            return sche.get('PatientId') == pat.id;
+                            return sche.get('patientId') == pat.id;
                         });
                         var dailyJob = new DailyJob();
-                        dailyJob.set("patientId",sche.get('PatientId'));
-                        dailyJob.set("therapistId",sche.get('TherapistId'));
-                        dailyJob.set("day",sche.get('Day'));
-                        dailyJob.set("period",sche.get('Period'));
+                        dailyJob.set("patientId",sche.get('patientId'));
+                        dailyJob.set("therapistId",sche.get('therapistId'));
+                        dailyJob.set("day",sche.get('day'));
+                        dailyJob.set("period",sche.get('period'));
                         dailyJob.set("kind",fPat.get('kind'));
-                        dailyJob.set("point",fPat.get('point'));
+                        dailyJob.set("division",fPat.get('division'));
+                        dailyJob.set("insurancePoint",fPat.get('insurancePoint'));
+                        dailyJob.set("innerPoint",fPat.get('innerPoint'));
                         dailyJob.set("status","Line");
 
 

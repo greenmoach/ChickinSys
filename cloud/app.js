@@ -40,19 +40,19 @@ app.get('/index', function(req, res){
 app.get('/therapist', therapistController.index);
 app.get('/therapist/new', therapistController.new);
 app.post('/therapists', therapistController.create);
-app.get('/therapists/:id/edit', therapistController.edit);
-app.put('/therapists/:id', therapistController.update);
+app.get('/therapist/:id/edit', therapistController.edit);
+app.put('/therapist/:id', therapistController.update);
 
 app.get('/patient', patientController.index);
 app.get('/patient/new', patientController.new);
 app.post('/patients', patientController.create);
-app.get('/patients/:id/edit', patientController.edit);
-app.put('/patients/:id', patientController.update);
+app.get('/patient/:id/edit', patientController.edit);
+app.put('/patient/:id', patientController.update);
 
 app.get('/schedule/:id/show', scheduleController.show);
 app.get('/schedule/:id/assign', scheduleController.assign);
 app.get('/schedule/:id/now', scheduleController.schedules);
-app.post('/schedules/:id', scheduleController.update);
+app.post('/schedule/:id', scheduleController.update);
 
 app.get('/', homeController.index);
 app.get('/jobs', homeController.jobs);

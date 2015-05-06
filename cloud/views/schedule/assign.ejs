@@ -13,17 +13,49 @@
     <% include ../partials/header %>
 </header>
 
-<input id="therapistId" type="hidden" value="<%= therapistId %>"/>
+<div class="content">
+    <div class="content-heading">
+        <div class="container container-full">
+            <div class="row">
+                <div class="col-lg-6 col-lg-push-3 col-sm-10">
+                    <h1 class="heading">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="/">HOME</a>
+                            </li>
+                            <li>
+                                <a href="/therapist">THERAPISTS</a>
+                            </li>
+                            <li>
+                                <a href="<%= "/schedule/" + therapistId + "/show" %>">SCHEDULE</a>
+                            </li>
+                            <li class="active">
+                                <a href="<%= "/schedule/" + therapistId + "/assign" %>">EDIT</a>
+                            </li>
+                        </ul>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-inner">
+        <div class="container container-full">
+            <input id="therapistId" type="hidden" value="<%= therapistId %>"/>
 
-<div class="selectedArea row"></div>
+            <div class="selectedArea row"></div>
 
-<div class="selectableArea row"></div>
+            <div class="selectableArea row"></div>
 
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4"><button class="btn btn-primary btn-block" onclick="AddData()">確定</button></div>
-    <div class="col-md-4"></div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"><button class="btn btn-primary btn-block" onclick="AddData()">確定</button></div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 
 <!--Day and the time period picker model-->
@@ -233,7 +265,7 @@
 
     function AddData() {
         $.ajax({
-            url: '/schedules/'+ $('#therapistId').val(),
+            url: '/schedule/'+ $('#therapistId').val(),
             contentType: "application/json;charset=utf-8",
             method: 'POST',
             dataType: 'json',

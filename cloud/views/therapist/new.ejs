@@ -13,30 +13,60 @@
     <% include ../partials/header %>
 </header>
 
+
+<div class="content">
+    <div class="content-heading">
+        <div class="container container-full">
+            <div class="row">
+                <div class="col-lg-6 col-lg-push-3 col-sm-10">
+                    <h1 class="heading">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="/">HOME</a>
+                            </li>
+                            <li>
+                                <a href="/therapist">THERAPISTS</a>
+                            </li>
+                            <li class="active">
+                                <a href="<%= "/therapists/new" %>">NEW</a>
+                            </li>
+                        </ul>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-inner">
+        <div class="container container-full">
+            <form class='form-horizontal' method='post' action='/therapists'>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" placeholder="請輸入治療師名字">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">性別</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" id="inlineRadio1" value="male"> 男
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" id="inlineRadio2" value="female"> 女
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">新增</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <section>
     <div class="container">
-        <form class='form-horizontal' method='post' action='/therapists'>
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="name" placeholder="請輸入治療師名字">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">性別</label>
-                <label class="radio-inline">
-                    <input type="radio" name="sex" id="inlineRadio1" value="male"> 男
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="sex" id="inlineRadio2" value="female"> 女
-                </label>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">新增</button>
-                </div>
-            </div>
-        </form>
+
     </div>
 </section>
 

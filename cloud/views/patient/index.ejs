@@ -13,26 +13,45 @@
     <% include ../partials/header %>
 </header>
 
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2 class="session-heading">Partials</h2>
-        <div class="line"></div>
+<div class="content">
+    <div class="content-heading">
+        <div class="container container-full">
+            <div class="row">
+                <div class="col-lg-6 col-lg-push-3 col-sm-10">
+                    <h1 class="heading">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="/">HOME</a>
+                            </li>
+                            <li class="active">
+                                <a href="/patient">PATIENTS</a>
+                            </li>
+                        </ul>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-inner">
+        <div class="container container-full">
+            <div class="row">
+                <% patients.forEach(function(patient){   %>
+                <div class="col-md-4">
+                    <h4> <%= patient.get('name') %> </h4>
+                    <h4> <%= patient.get('sex') %> </h4>
+                    <h4> <%= patient.get('kind') %> </h4>
+                    <h4> <%= patient.get('diagnosis') %> </h4>
+                    <h4> <%= formatTime(patient.createdAt) %> </h4>
+                    <a class="btn btn-default" href="<%= '/patient/' + patient.id + '/edit' %>" role="button">修改</a>
+                </div>
+
+                <% }) %>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <% patients.forEach(function(patient){   %>
-    <div class="col-md-4">
-        <h4> <%= patient.get('name') %> </h4>
-        <h4> <%= patient.get('sex') %> </h4>
-        <h4> <%= patient.get('kind') %> </h4>
-        <h4> <%= patient.get('diagnosis') %> </h4>
-        <h4> <%= formatTime(patient.createdAt) %> </h4>
-        <a class="btn btn-default" href="<%= '/patients/' + patient.id + '/edit' %>" role="button">修改</a>
-    </div>
 
-    <% }) %>
-</div>
 
 <footer>
     <% include ../partials/footer %>
