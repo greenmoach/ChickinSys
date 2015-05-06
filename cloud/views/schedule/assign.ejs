@@ -164,6 +164,7 @@
     };
 
     var currSche = [], allPa = null;;
+    var therapist = $('#therapistId').val();
 
     $(function() {
         FatchResult();
@@ -273,8 +274,6 @@
             RenderResult();
         }
     }
-
-    var therapist = $('#therapistId').val();
 
     function AddData() {
         $.ajax({
