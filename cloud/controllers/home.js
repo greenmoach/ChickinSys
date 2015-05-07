@@ -14,7 +14,7 @@ exports.index = function(req, res) {
 };
 
 exports.jobs = function(req, res) {
-    var day_list = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var day_list = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     var today = new Date();
     today.setHours(0,0,0,0)
     var query = new Parse.Query("DailyJob");

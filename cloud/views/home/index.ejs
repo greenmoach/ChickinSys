@@ -22,7 +22,7 @@
     </div>
     <div class="content-inner">
         <div class="container container-full">
-            <div class="jobZone">
+            <div class="job-zone row">
 
             </div>
         </div>
@@ -45,10 +45,23 @@
     </div>
 </div>
 
+<!--underscore template-->
+
 <script type="text/template" class="lineUp">
-    <div class="col-md-4 contrast">
-        <span class="name-circle">{{= pa.name.substr(0,1) }}</span> <h4> {{= pa.name }} </h4>
-        <button onclick=""></button>
+    <div class="col-lg-1 col-md-2 col-sm-4">
+        <div class="card card-green">
+            <div class="card-main">
+                <div class="card-inner">
+                    <p class="card-name-heading text-green">{{= pa.name }}</p>
+                </div>
+                <span class="name-circle-xs circle-posi circle-raised">{{= pa.name.substr(0,1) }}</span>
+                <div class="card-action">
+                    <p>
+                        {{= pa.diagnosis }}
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
 </script>
@@ -75,16 +88,16 @@
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
                 jobData = data;
-                lineUpPatients(data);
+                lineUpPatients();
             },
             error: function (xhr, textStatus, errorThrown) {
             }
         });
     }
 
-    function lineUpPatients(data) {
+    function lineUpPatients() {
         $( ".selectableArea").empty();
-        var cont = _.filter(data, function(elem){
+        var cont = _.filter(jobData, function(elem){
             return elem.job.status === "Line";
         });
 
@@ -96,10 +109,42 @@
         _.each(cont, function(elem){
             // Render the underscore template and inject it after the H1
             // in our current DOM.
-            $( ".jobZone" ).append(
+            $( "div.job-zone" ).append(
                     template( elem )
             );
 
+        });
+
+        function scb(elem) { elem.hide( "scale", {percent:0}, 200 )};
+        function dcb(elem) { alert("請假!!");}
+
+        clickAction($('div.job-zone').find('.card'),scb,dcb);
+
+    }
+
+    function clickAction(elem, singleCallback, doubleCallback) {
+        elem.on('click',function(){
+            var $button=$(this);
+            if ($button.data('alreadyclicked')){
+                $button.data('alreadyclicked', false); // reset
+
+                if ($button.data('alreadyclickedTimeout')){
+                    clearTimeout($button.data('alreadyclickedTimeout')); // prevent this from happening
+                }
+                // do what needs to happen on double click.
+                doubleCallback($button);
+            }else{
+                $button.data('alreadyclicked', true);
+                var alreadyclickedTimeout=setTimeout(function(){
+                    $button.data('alreadyclicked', false); // reset when it happens
+                    singleCallback($button);
+                    // do what needs to happen on single click.
+                    // use $button instead of $(this) because $(this) is
+                    // no longer the element
+                },300); // <-- dblclick tolerance here
+                $button.data('alreadyclickedTimeout', alreadyclickedTimeout); // store this id to clear if necessary
+            }
+            return false;
         });
     }
 </script>
