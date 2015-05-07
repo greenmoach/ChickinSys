@@ -67,6 +67,9 @@
 </script>
 
 <script>
+    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+    var animationShake = 'animated shake';
+    var animationHinge = 'animated hinge';
 
     _.templateSettings = {
         interpolate: /\{\{\=(.+?)\}\}/g,
@@ -76,6 +79,23 @@
     $(function(){
         todyPatients();
 
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
     });
 
     var jobData = null;
@@ -115,7 +135,13 @@
 
         });
 
-        function scb(elem) { elem.hide( "scale", {percent:0}, 200 )};
+        function scb(elem) {
+            elem.addClass(animationShake).one(animationEnd, function() {
+               elem.removeClass(animationShake).addClass(animationHinge).one(animationEnd, function() {
+
+               });
+            });
+        };
         function dcb(elem) { alert("請假!!");}
 
         clickAction($('div.job-zone').find('.card'),scb,dcb);
