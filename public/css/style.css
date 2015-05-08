@@ -45,7 +45,7 @@ span.circle-posi {
     position: relative;
     float: right;
     z-index: 2;
-    top: 10px;
+    top: -15px;
     left: -5px;
 }
 
@@ -55,6 +55,14 @@ span.circle-posi {
     transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.card-main-ext {
+    min-heightheight: 100px;
+}
+
+.card-inner-ext {
+    height: 30px;
+}
+
 .card-name-heading {
     display: block;
     font-size: 20px;
@@ -62,6 +70,10 @@ span.circle-posi {
 
     margin-top: 10px;
     margin-bottom: -15px;
+}
+
+.card-content {
+    padding: 5px 10px;
 }
 
 .line{
@@ -79,6 +91,37 @@ span.circle-posi {
     opacity: 0.5;
 }
 
+/* schedule card */
+span.sch-name-circle {
+    isplay: block;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    -moz-border-radius: 50%;
+
+    border-radius: 50%;
+    background-color: #e74c3c;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    float: left;
+}
+.sch-card-inner {
+    padding-top: 10px;
+}
+
+.sch-card-heading {
+    padding-left: 5px;
+    font-size: medium;
+}
+
+.sch-card-text {
+    font-size: xx-small;
+    color: #B3ADAD;
+    line-height: 1.4;
+}
+
+
 /**** toast use fontAwesome *****/
 #toast-container > .toast {
     background-image: none !important;
@@ -95,16 +138,16 @@ span.circle-posi {
     margin: auto 0.5em auto -1.5em;
 }
 #toast-container > .toast-warning:before {
-    content: "\f003";
+    content: "\f071";
 }
 #toast-container > .toast-error:before {
-    content: "\f001";
+    content: "\f06a";
 }
 #toast-container > .toast-info:before {
-    content: "\f005";
+    content: "\f05a";
 }
 #toast-container > .toast-success:before {
-    content: "\f002";
+    content: "\f058";
 }
 
 /**** Schedule time table ****/
@@ -123,4 +166,9 @@ span.circle-posi {
     width: 100%;
     background-color: #5298fc;
     color: #fff;
+}
+
+
+.footer-content {
+    margin: 0px 0px;
 }

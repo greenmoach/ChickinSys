@@ -2,7 +2,8 @@
 
 <footer class="footer">
     <div class="container">
-        <p>Material</p>
+        <h6 class="footer-content">Jimmy.Chen <br/>
+        POWER BY: www.parse.com</h6>
     </div>
 </footer>
 
@@ -13,3 +14,19 @@
 
 <!--toastr-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script>
+    function pagePalettes(palette) {
+        if(typeof(Storage) !== "undefined") {
+            localStorage.pagepalette = palette;
+            location.reload();
+        }
+    }
+
+    $(function() {
+        //Set Page palette
+        if (localStorage.pagepalette) {
+            $('body').addClass(localStorage.pagepalette);
+        }
+    });
+</script>

@@ -56,6 +56,7 @@ app.post('/schedule/:id', scheduleController.update);
 
 app.get('/', homeController.index);
 app.get('/jobs', homeController.jobs);
+app.get('/check/:id/:status', homeController.check);
 
 
 

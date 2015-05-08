@@ -18,10 +18,9 @@
         <div class="container container-full">
             <div class="row">
                 <div class="col-lg-6 col-lg-push-3 col-sm-10">
-                    <h1 class="heading">
                         <ul class="breadcrumb">
                             <li>
-                                <a href="/">HOME</a>
+                                <a href="/"><span class="icon icon-home"></span>HOME</a>
                             </li>
                             <li>
                                 <a href="/therapist">THERAPISTS</a>
@@ -30,18 +29,12 @@
                                 <a href="<%= "/schedule/" + therapistId + "/show" %>">SCHEDULE</a>
                             </li>
                         </ul>
-                    </h1>
                 </div>
             </div>
         </div>
     </div>
     <div class="content-inner">
         <div class="container container-full">
-            <div class="row">
-                <div class="col-md-12">
-                    <button class="btn btn-primary btn-block" onclick= <%= "location.href='/schedule/" +  therapistId + "/assign'" %>>修改</button>
-                </div>
-            </div>
 
             <div class="row">
                 <% for(var i = 0 ; i< model.length; i++) { %>
@@ -81,6 +74,17 @@
 <footer>
     <% include ../partials/footer %>
 </footer>
+
+
+<div class="fbtn-container">
+    <div class="fbtn-inner">
+        <a class="fbtn fbtn-red fbtn-lg waves-circle waves-effect waves-light" title="edit" href=<%= "/schedule/" +  therapistId + "/assign" %>>
+            <span class="access-hide">修改</span>
+            <span class="fbtn-ori icon icon-border-color"></span>
+        </a>
+
+    </div>
+</div>
 
 </body>
 </html>

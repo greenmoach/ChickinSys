@@ -18,35 +18,62 @@
         <div class="container container-full">
             <div class="row">
                 <div class="col-lg-6 col-lg-push-3 col-sm-10">
-                    <h1 class="heading">
                         <ul class="breadcrumb">
                             <li>
-                                <a href="/">HOME</a>
+                                <a href="/"><span class="icon icon-home"></span>HOME</a>
                             </li>
                             <li class="active">
                                 <a href="/patient">PATIENTS</a>
                             </li>
                         </ul>
-                    </h1>
                 </div>
             </div>
         </div>
     </div>
     <div class="content-inner">
-        <div class="container container-full">
-            <div class="row">
-                <% patients.forEach(function(patient){   %>
-                <div class="col-md-4">
-                    <h4> <%= patient.get('name') %> </h4>
-                    <h4> <%= patient.get('sex') %> </h4>
-                    <h4> <%= patient.get('kind') %> </h4>
-                    <h4> <%= patient.get('diagnosis') %> </h4>
-                    <h4> <%= formatTime(patient.createdAt) %> </h4>
-                    <a class="btn btn-default" href="<%= '/patient/' + patient.id + '/edit' %>" role="button">修改</a>
-                </div>
+        <div class="container">
 
+
+            <div class="tile-wrap">
+                <div class="tile">
+                    <div class="tile-inner">
+                        <h5 class="content-sub-heading">清單&nbsp;<small>點選後可以展開看詳細資訊或是進行編輯</small></h5>
+                    </div>
+                </div>
+                <% patients.forEach(function(patient){   %>
+                <div class="tile tile-collapse">
+                    <div class="tile-toggle" data-parent=".content" data-target="#<%= patient.id %>" data-toggle="tile">
+                        <div class="pull-left tile-side">
+                            <div class="avatar avatar-blue avatar-sm">
+                                <%= patient.get('name').substr(0,1) %>
+                            </div>
+                        </div>
+                        <div class="tile-inner">
+                            <div class="text-overflow">
+                                【姓名】<%= patient.get('name') %>【病歷號】<%= patient.get('chartNo') %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-active-show collapse" id="<%= patient.id %>">
+                        <div class="tile-sub">
+                            <p>病歷號: <small><%= patient.get('chartNo') %></small></p>
+                            <p>生日: <small><%= patient.get('bDay') %></small></p>
+                            <p>性別: <small><%= patient.get('sex') %></small></p>
+                            <p>科目: <small><%= patient.get('division') %></small></p>
+                            <p>狀態: <small><%= patient.get('kind') %></small></p>
+                            <p>健保點數: <small><%= patient.get('innerPoint') %></small></p>
+                            <p>院內點數: <small><%= patient.get('insurancePoint') %></small></p>
+                        </div>
+                        <div class="tile-footer">
+                            <ul class="nav nav-list pull-left">
+                                <li>
+                                    <a href="<%= '/patient/' + patient.id + '/edit' %>" class="btn btn-yellow waves-button waves-effect waves-light"><span class="icon icon-check"></span>&nbsp;修改</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 <% }) %>
-            </div>
         </div>
     </div>
 </div>
@@ -60,8 +87,8 @@
 
 <div class="fbtn-container">
     <div class="fbtn-inner">
-        <a class="fbtn fbtn-red fbtn-lg waves-circle waves-effect waves-light" title="Upload" href="/patient/new">
-            <span class="access-hide">Action</span>
+        <a class="fbtn fbtn-red fbtn-lg waves-circle waves-effect waves-light" title="NEW" href="/patient/new">
+            <span class="access-hide">新增</span>
             <span class="fbtn-ori icon icon-add"></span>
         </a>
 

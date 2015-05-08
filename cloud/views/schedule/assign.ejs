@@ -18,10 +18,9 @@
         <div class="container container-full">
             <div class="row">
                 <div class="col-lg-6 col-lg-push-3 col-sm-10">
-                    <h1 class="heading">
                         <ul class="breadcrumb">
                             <li>
-                                <a href="/">HOME</a>
+                                <a href="/"><span class="icon icon-home"></span>HOME</a>
                             </li>
                             <li>
                                 <a href="/therapist">THERAPISTS</a>
@@ -33,7 +32,6 @@
                                 <a href="<%= "/schedule/" + therapistId + "/assign" %>">EDIT</a>
                             </li>
                         </ul>
-                    </h1>
                 </div>
             </div>
         </div>
@@ -41,16 +39,11 @@
     <div class="content-inner">
         <div class="container container-full">
             <input id="therapistId" type="hidden" value="<%= therapistId %>"/>
-
+            <h5 class="content-sub-heading">現有病人</h5>
             <div class="selectedArea row"></div>
-
+            <h5 class="content-sub-heading">其他</h5>
             <div class="selectableArea row"></div>
 
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4"><button class="btn btn-primary btn-block" onclick="AddData()">確定</button></div>
-                <div class="col-md-4"></div>
-            </div>
         </div>
     </div>
 </div>
@@ -127,23 +120,85 @@
     <% include ../partials/footer %>
 </footer>
 
-<script type="text/template" class="selectedItem">
-    <div class="col-md-4 contrast">
-        <span class="name-circle">{{= name.substr(0,1) }}</span> <h4> {{= name }} </h4>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservationModal"
-                data-who="{{= objectId}}" data-day="{{= day}}" data-period="{{= period}}" >修改預約時間</button>
-        <button class="btn btn-default" onclick="RmPa(' {{= objectId}} ')">移除</button>
+<div class="fbtn-container">
+    <div class="fbtn-inner">
+        <a class="fbtn fbtn-red fbtn-lg waves-circle waves-effect waves-light" title="edit" href="javascript:AddData()">
+            <span class="access-hide">確定</span>
+            <span class="fbtn-ori icon icon-done"></span>
+        </a>
+
     </div>
+</div>
+
+<script type="text/template" class="selectedItem">
+    <div class="col-lg-2 col-md-2 col-sm-3">
+        <div class="card card-yellow">
+            <div class="card-main">
+                <div class="card-inner sch-card-inner">
+                    <span class="sch-name-circle">{{= name.substr(0,1) }}  </span>
+                    <span class="sch-card-heading"> {{= name }} </span>
+                    <div class="sch-card-text">
+                        {{= dayFormat(day)}}<br>
+                        {{= periodFormat(period)}}
+                    </div>
+                </div>
+                <div class="card-action">
+                    <ul class="nav nav-list pull-left">
+                        <li>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#reservationModal"
+                               data-who="{{= objectId}}" data-day="{{= day}}" data-period="{{= period}}"><span class="access-hide">schedule</span><span class="icon icon-schedule"></span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:RmPa(' {{= objectId}} ')"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<div class="col-md-4 contrast">-->
+        <!--<span class="name-circle">{{= name.substr(0,1) }}</span> <h4> {{= name }} </h4>-->
+        <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservationModal"-->
+                <!--data-who="{{= objectId}}" data-day="{{= day}}" data-period="{{= period}}" >修改預約時間</button>-->
+        <!--<button class="btn btn-default" onclick="RmPa(' {{= objectId}} ')">移除</button>-->
+    <!--</div>-->
 
 
 </script>
 
 <script type="text/template" class="selectableItem">
-    <div class="col-md-4 contrast">
-        <span class="name-circle">{{= name.substr(0,1) }}</span> <h4> {{= name }} </h4>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservationModal"
-                data-who="{{= objectId}}" data-day="Mon" data-period="08300900" >新增</button>
+
+    <div class="col-lg-2 col-md-2 col-sm-3">
+        <div class="card card-yellow">
+            <div class="card-main">
+                <div class="card-inner sch-card-inner">
+                    <span class="sch-name-circle">{{= name.substr(0,1) }}  </span>
+                    <span class="sch-card-heading"> {{= name }} </span>
+                    <div class="sch-card-text">
+                        病歷號：{{= chartNo }} <br/>
+                        {{= (division == "Ortho") ? "骨科" : "神經" }} &nbsp; - &nbsp;
+                        {{= (kind == "Inpatient") ? "住院" : "門診" }}
+                    </div>
+                </div>
+                <div class="card-action">
+                    <ul class="nav nav-list pull-left">
+                        <li>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#reservationModal"
+                               data-who="{{= objectId}}" data-day="Mon" data-period="08300900"><span class="access-hide">新增</span><span class="icon icon-playlist-add"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!--<div class="col-md-4 contrast">-->
+        <!--<span class="name-circle">{{= name.substr(0,1) }}</span> <h4> {{= name }} </h4>-->
+        <!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservationModal"-->
+                <!--data-who="{{= objectId}}" data-day="Mon" data-period="08300900" >新增</button>-->
+    <!--</div>-->
 
 
 </script>
@@ -289,6 +344,69 @@
             }
         });
     }
+
+//    helper
+    function dayFormat(day) {
+        switch(day) {
+            case 'Mon':
+                return '星期一';
+            case 'Tue':
+                return '星期二';
+            case 'Wed':
+                return '星期三';
+            case 'Thu':
+                return '星期四';
+            case 'Fri':
+                return '星期五';
+            case 'Sat':
+                return '星期六';
+        }
+    }
+
+    function periodFormat(period) {
+        switch(period) {
+            case '08300900':
+                return '08:30 - 09:00 (上午八點半到九點)';
+            case '09000930':
+                return '09:00 - 09:30 (上午九點到九點半)';
+            case '09301000':
+                return '09:30 - 10:00 (上午九點半到十點)';
+            case '10001030':
+                return '10:00 - 10:30 (上午十點到十點半)';
+            case '10301100':
+                return '10:30 - 11:00 (上午十點半到十一點)';
+            case '11001130':
+                return '11:00 - 11:30 (上午十一點到十一點半)';
+            case '13301400':
+                return '13:30 - 14:00 (下午一點半到兩點)';
+            case '14001430':
+                return '14:00 - 14:30 (下午兩點到兩點半)';
+            case '14301500':
+                return '14:30 - 15:00 (下午兩點半到三點)';
+            case '15001530':
+                return '15:00 - 15:30 (下午三點到三點半)';
+            case '15301600':
+                return '15:30 - 16:00 (下午三點半到四點)';
+            case '16001630':
+                return '16:00 - 16:30 (下午四點到四點半)';
+            case '17301800':
+                return '17:30 - 18:00 (晚上五點半到六點)';
+            case '18001830':
+                return '18:00 - 18:30 (晚上六點到六點半)';
+            case '18301900':
+                return '18:30 - 19:00 (晚上六點半到七點)';
+            case '19001930':
+                return '19:00 - 19:30 (晚上七點到七點半)';
+            case '19302000':
+                return '19:30 - 20:00 (晚上七點半到八點)';
+            case '20002030':
+                return '20:00 - 20:30 (晚上八點到八點半)';
+            case '20302100':
+                return '20:30 - 21:00 (晚上八點半到九點)';
+        }
+    }
+
+
 </script>
 
 </body>

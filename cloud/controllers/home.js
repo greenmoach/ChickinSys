@@ -62,8 +62,24 @@ exports.jobs = function(req, res) {
         },
         function( error ){
             res.send(500, error.message );
+        });
+};
+
+exports.check = function(req, res) {
+    var query = new Parse.Query(DailyJob);
+    query.get(req.params.id, {
+        success: function(dailyJob) {
+            dailyJob.set('status', req.params.status);
+            dailyJob.save(null, {
+                success: function(dailyJob) {
+                    res.json(dailyJob);
+                }
+            });
+        },
+        error: function(object, error) {
+            res.send(500, error.message);
         }
-    );
+    });
 };
 
 var GenJobs = function(callback) {
