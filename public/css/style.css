@@ -172,3 +172,28 @@ span.sch-name-circle {
 .footer-content {
     margin: 0px 0px;
 }
+
+.point-circle {
+    display: block;
+    height: 15px;
+    width: 15px;
+    line-height: 15px;
+
+    -moz-border-radius: 50%; /* half of size */
+    border-radius: 50%; /* half of size */
+
+    text-align: center;
+    font-size: 15px;
+}
+
+.point-circle-red {
+    border-width: thin;
+    border-color: red;
+    color: red;
+}
+
+.point-circle-blue {
+    border-width: thin;
+    border-color: blue;
+    color: blue;
+}

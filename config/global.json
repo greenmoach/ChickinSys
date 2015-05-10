@@ -7,8 +7,15 @@
       "applicationId": "pL0y8IeDJgtlzr4LWUJw6zlEMVJcZsvRLFq1HucI",
       "masterKey": "QCAjN82fpLKvHdrD5OkvuFz7x7TBqdi2EhbBLMq6"
     },
+    "ChickinSysDev": {
+      "applicationId": "g5IyMvNlhHDEAyVc3veDFKCTuLNUGNCpJckKhofn",
+      "masterKey": "3McX5fkTjv3EZwAYQFW6TV2cu8aklnj2iQ8ohaVi"
+    },
     "_default": {
-      "link": "ChickinSys"
+      "link": "development"
+    },
+    "development": {
+      "link": "ChickinSysDev"
     }
   }
 }

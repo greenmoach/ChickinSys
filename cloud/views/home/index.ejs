@@ -72,7 +72,7 @@
 <script>
     var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
     var animationShake = 'animated shake';
-    var animationHinge = 'animated hinge';
+    var animationFadeOut = 'animated fadeOut';
 
     _.templateSettings = {
         interpolate: /\{\{\=(.+?)\}\}/g,
@@ -192,7 +192,7 @@
 
     function checkAction(elem, finishCallback) {
         elem.addClass(animationShake).one(animationEnd, function() {
-            elem.removeClass(animationShake).addClass(animationHinge).one(animationEnd, function() {
+            elem.removeClass(animationShake).addClass(animationFadeOut).one(animationEnd, function() {
                 var id = elem.find('#dailyJobId').val();
                 $.ajax({
                     url: '/check/' + id + '/Check',
@@ -217,7 +217,7 @@
 
     function offAction(elem, finishCallback) {
         elem.addClass(animationShake).one(animationEnd, function() {
-            elem.removeClass(animationShake).addClass(animationHinge).one(animationEnd, function() {
+            elem.removeClass(animationShake).addClass(animationFadeOut).one(animationEnd, function() {
                 var id = elem.find('#dailyJobId').val();
                 $.ajax({
                     url: '/check/' + id + '/Off',

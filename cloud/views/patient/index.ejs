@@ -50,7 +50,9 @@
                         </div>
                         <div class="tile-inner">
                             <div class="text-overflow">
-                                【姓名】<%= patient.get('name') %>【病歷號】<%= patient.get('chartNo') %>
+                                【<%= (patient.get('sex') == 'male') ? '男' : '女' %>】<%= patient.get('name') %>
+                                <span class="point-circle point-circle-blue"><%= patient.get('insurancePoint') %></span>
+                                <span class="point-circle point-circle-red"><%= patient.get('innerPoint') %></span>
                             </div>
                         </div>
                     </div>
@@ -61,8 +63,8 @@
                             <p>性別: <small><%= patient.get('sex') %></small></p>
                             <p>科目: <small><%= patient.get('division') %></small></p>
                             <p>狀態: <small><%= patient.get('kind') %></small></p>
-                            <p>健保點數: <small><%= patient.get('innerPoint') %></small></p>
-                            <p>院內點數: <small><%= patient.get('insurancePoint') %></small></p>
+                            <p>健保點數: <small><%= patient.get('insurancePoint') %></small></p>
+                            <p>科內點數: <small><%= patient.get('innerPoint') %></small></p>
                         </div>
                         <div class="tile-footer">
                             <ul class="nav nav-list pull-left">
