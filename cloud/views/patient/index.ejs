@@ -44,15 +44,21 @@
                 <div class="tile tile-collapse">
                     <div class="tile-toggle" data-parent=".content" data-target="#<%= patient.id %>" data-toggle="tile">
                         <div class="pull-left tile-side">
-                            <div class="avatar avatar-blue avatar-sm">
-                                <%= patient.get('name').substr(0,1) %>
+                            <% if (patient.get('kind') == 'Inpatient') { %>
+                            <div class="avatar avatar-red avatar-sm">
+                                住
                             </div>
+                            <% } else { %>
+                            <div class="avatar avatar-blue avatar-sm">
+                                門
+                            </div>
+                            <% } %>
                         </div>
                         <div class="tile-inner">
                             <div class="text-overflow">
                                 【<%= (patient.get('sex') == 'male') ? '男' : '女' %>】<%= patient.get('name') %>
-                                <span class="point-circle point-circle-blue"><%= patient.get('insurancePoint') %></span>
-                                <span class="point-circle point-circle-red"><%= patient.get('innerPoint') %></span>
+                                <span><%= patient.get('insurancePoint') %></span>
+                                <span><%= patient.get('innerPoint') %></span>
                             </div>
                         </div>
                     </div>

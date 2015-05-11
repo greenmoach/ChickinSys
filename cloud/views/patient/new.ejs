@@ -161,6 +161,70 @@
 
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-4">
+                            <label class="form-icon-label" for="datepicker-adv">初診日期</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-12">
+                            <input class="datepicker-adv datepicker-adv-default form-control" id="datepicker-adv" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-4">
+                            <label class="form-icon-label">預約</label>
+                        </div>
+                        <input type="hidden" name="day"/>
+                        <div class="col-lg-10 col-md-10 col-sm-12">
+                            <div class="row">
+                                <div>
+                                    <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Mon">一</div>
+                                    <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Wed">三</div>
+                                    <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Fri">五</div>
+                                </div>
+                                <div>
+                                    <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Tue">二</div>
+                                    <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Thu">四</div>
+                                    <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Sat">六</div>
+                                </div>
+                                <div>
+                                    <select name="period">
+                                        <optgroup label="上午">
+                                            <option value="08300900">08:30 - 09:00 (上午八點半到九點)</option>
+                                            <option value="09000930">09:00 - 09:30 (上午九點到九點半)</option>
+                                            <option value="09301000">09:30 - 10:00 (上午九點半到十點)</option>
+                                            <option value="10001030">10:00 - 10:30 (上午十點到十點半)</option>
+                                            <option value="10301100">10:30 - 11:00 (上午十點半到十一點)</option>
+                                            <option value="11001130">11:00 - 11:30 (上午十一點到十一點半)</option>
+                                        </optgroup>
+                                        <optgroup label="下午">
+                                            <option value="13301400">13:30 - 14:00 (下午一點半到兩點)</option>
+                                            <option value="14001430">14:00 - 14:30 (下午兩點到兩點半)</option>
+                                            <option value="14301500">14:30 - 15:00 (下午兩點半到三點)</option>
+                                            <option value="15001530">15:00 - 15:30 (下午三點到三點半)</option>
+                                            <option value="15301600">15:30 - 16:00 (下午三點半到四點)</option>
+                                            <option value="16001630">16:00 - 16:30 (下午四點到四點半)</option>
+                                        </optgroup>
+                                        <optgroup label="晚上">
+                                            <option value="17301800">17:30 - 18:00 (晚上五點半到六點)</option>
+                                            <option value="18001830">18:00 - 18:30 (晚上六點到六點半)</option>
+                                            <option value="18301900">18:30 - 19:00 (晚上六點半到七點)</option>
+                                            <option value="19001930">19:00 - 19:30 (晚上七點到七點半)</option>
+                                            <option value="19302000">19:30 - 20:00 (晚上七點半到八點)</option>
+                                            <option value="20002030">20:00 - 20:30 (晚上八點到八點半)</option>
+                                            <option value="20302100">20:30 - 21:00 (晚上八點半到九點)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group form-group-label">
                     <div class="row">
                         <div class="col-lg-6 col-sm-8">
@@ -284,6 +348,21 @@
                     $('#innerPointDiv').find('div.radio').removeClass('disabled');
                 }
             }
+
+        });
+
+
+        $('.daypicker').on('click', function() {
+            $(this).toggleClass('avatar-circle-green avatar-green');
+
+            var dayVal = [];
+            $('.daypicker').each(function(idx){
+                if($(this).hasClass('avatar-green')){
+                    dayVal.push($(this).attr('date-value'));
+                }
+            });
+            console.log(dayVal.join());
+            $('input[type=hidden][name=day]').val(dayVal.join());
 
         });
     });

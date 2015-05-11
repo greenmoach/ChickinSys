@@ -168,32 +168,43 @@ span.sch-name-circle {
     color: #fff;
 }
 
-
 .footer-content {
     margin: 0px 0px;
 }
 
-.point-circle {
-    display: block;
-    height: 15px;
-    width: 15px;
-    line-height: 15px;
 
-    -moz-border-radius: 50%; /* half of size */
-    border-radius: 50%; /* half of size */
-
-    text-align: center;
-    font-size: 15px;
+.avatar-circle-alt {
+    background-color: #ffffff;
+    color: #000000;
+    border: #4caf50 thin solid;
 }
 
-.point-circle-red {
-    border-width: thin;
-    border-color: red;
-    color: red;
+.avatar-circle-blue {
+    background-color: #ffffff;
+    color: #000000;
+    border: #2196f3 thin solid;
 }
 
-.point-circle-blue {
-    border-width: thin;
-    border-color: blue;
-    color: blue;
+.avatar-circle-green {
+    background-color: #ffffff;
+    color: #000000;
+    border: #4caf50 thin solid;
+}
+
+.avatar-circle-purple {
+    background-color: #ffffff;
+    color: #000000;
+    border: #9c27b0 thin solid;
+}
+
+.avatar-circle-red {
+    background-color: #ffffff;
+    color: #000000;
+    border: #f44336 thin solid;
+}
+
+.avatar-circle-yellow {
+    background-color: #ffffff;
+    color: #000000;
+    border: #ffc107 thin solid;
 }
