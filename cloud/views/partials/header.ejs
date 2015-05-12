@@ -21,7 +21,7 @@
         </li>
         <li>
             <a class="menu-toggle" href="#profile">
-                <span class="access-hide">John Smith</span>
+                <span class="access-hide"><%= Parse.User.current() ? Parse.User.current().get('username') : '' %></span>
                 <span class="avatar avatar-sm"></span>
                 <span class="header-close icon icon-close"></span>
             </a>

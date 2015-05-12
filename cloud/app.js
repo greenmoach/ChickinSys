@@ -1,5 +1,6 @@
 // These two lines are required to initialize Express in Cloud Code.
  express = require('express');
+var parseExpressCookieSession = require('parse-express-cookie-session');
 var moment = require('moment');
 var _ = require('underscore');
 var requireUser = require('cloud/controllers/require-user');
@@ -18,6 +19,14 @@ app.set('views', 'cloud/views');  // Specify the folder to find templates
 app.set('view engine', 'ejs');    // Set the template engine
 app.use(express.bodyParser());    // Middleware for reading request body
 app.use(express.methodOverride());
+app.use(express.cookieParser('SECRET_SIGNING_KEY'));
+app.use(parseExpressCookieSession({
+    fetchUser: true,
+    key: 'image.sess',
+    cookie: {
+        maxAge: 3600000 * 24 * 30
+    }
+}));
 
 // You can use app.locals to store helper methods so that they are accessible
 // from templates.

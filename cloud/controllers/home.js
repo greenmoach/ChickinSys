@@ -114,7 +114,9 @@ exports.login = function(req, res) {
 
 exports.loginAction = function(req, res) {
     Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
-        res.redirect('/');
+        console.log(user);
+        res.render('home/index', {session: user.getSessionToken()});
+
     }, function(error) {
         // Show the error message and let the user try again
         res.render('home/login', {username: req.body.username, flash: error.message });
