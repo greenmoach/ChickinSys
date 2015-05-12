@@ -82,6 +82,45 @@ exports.check = function(req, res) {
     });
 };
 
+
+/**********  Identity ************/
+exports.register  = function(req, res) {
+    res.render('home/register', { });
+}
+
+exports.signup = function(req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var passwordConfirm = req.body.passwordConfirm;
+    if (passwordConfirm != password) {
+        res.render('home/register', {username: username, flash: '兩次密碼輸入不同' });
+    }else {
+        var user = new Parse.User();
+        user.set('username', username);
+        user.set('password', password);
+
+        user.signUp().then(function(user) {
+            res.redirect('/');
+        }, function(error) {
+            // Show the error message and let the user try again
+            res.render('home/register', {username: username, flash: error.message });
+        });
+    }
+};
+
+exports.login = function(req, res) {
+    res.render('home/login', { });
+}
+
+exports.loginAction = function(req, res) {
+    Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
+        res.redirect('/');
+    }, function(error) {
+        // Show the error message and let the user try again
+        res.render('home/login', {username: req.body.username, flash: error.message });
+    });
+}
+
 var GenJobs = function(callback) {
     var query = new Parse.Query(Schedule);
     query.find().then(function(schedules) {

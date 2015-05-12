@@ -142,19 +142,19 @@
                         </div>
                         <div class="col-lg-10 col-md-10 col-sm-12" >
                             <% if (patient.get('division') == 'Neuro') { %>
-                            <div class="radio radio-adv radio-inline">
+                            <div class="radio radio-adv radio-inline <%= patient.get('kind') == 'Inpatient' ? 'disabled' : '' %>">
                                 <label for="innerPointId1">
-                                    <input class="access-hide" id="innerPointId1" name="innerPoint" type="radio" value="1" <%= patient.get('innerPoint') == 1 ? 'checked' : '' %>> 1
+                                    <input class="access-hide" id="innerPointId1" name="innerPoint" type="radio" value="1" <%= patient.get('innerPoint') == 1 ? 'checked' : '' %> <%= patient.get('kind') == 'Inpatient' ? 'disabled' : '' %>> 1
                                 </label>
                             </div>
-                            <div class="radio radio-adv radio-inline">
+                            <div class="radio radio-adv radio-inline <%= patient.get('kind') == 'Inpatient' ? 'disabled' : '' %>">
                                 <label for="innerPointId2">
-                                    <input class="access-hide" id="innerPointId2" name="innerPoint" type="radio" value="2" <%= patient.get('innerPoint') == 2 ? 'checked' : '' %>> 2
+                                    <input class="access-hide" id="innerPointId2" name="innerPoint" type="radio" value="2" <%= patient.get('innerPoint') == 2 ? 'checked' : '' %> <%= patient.get('kind') == 'Inpatient' ? 'disabled' : '' %>> 2
                                 </label>
                             </div>
-                            <div class="radio radio-adv radio-inline">
+                            <div class="radio radio-adv radio-inline <%= patient.get('kind') == 'Inpatient' ? 'disabled' : '' %>">
                                 <label for="innerPointId3">
-                                    <input class="access-hide" id="innerPointId3" name="innerPoint" type="radio" value="3" <%= patient.get('innerPoint') == 3 ? 'checked' : '' %>> 3
+                                    <input class="access-hide" id="innerPointId3" name="innerPoint" type="radio" value="3" <%= patient.get('innerPoint') == 3 ? 'checked' : '' %> <%= patient.get('kind') == 'Inpatient' ? 'disabled' : '' %>> 3
                                 </label>
                             </div>
                             <% } else { %>
@@ -178,6 +178,68 @@
 
                         </div>
 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-4">
+                            <label class="form-icon-label" for="datepicker-adv">初診日期</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-12">
+                            <input class="datepicker-adv datepicker-adv-default form-control" id="datepicker-adv" type="text" value="<%= patient.get('firstDate')%>" name="firstDate">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-4">
+                            <label class="form-icon-label">預約</label>
+                        </div>
+                        <input type="hidden" name="day" value="<%= patient.get('day') %>" />
+                        <div class="col-lg-10 col-md-10 col-sm-12">
+                            <div class="row">
+                                <div class="patient-schedule-picker col-lg-12 col-md-12 col-sm-12">
+                                    <div class="daypicker avatar <%= typeof(patient.get('day')) == 'undefined' ? 'avatar-circle-green' : typeof(_.find(patient.get('day').split(','), function(num) { return num == 'Mon'})) === 'undefined' ? 'avatar-circle-green' : 'avatar-green' %> avatar-sm avatar-inline" date-value="Mon">一</div>
+                                    <div class="daypicker avatar <%= typeof(patient.get('day')) == 'undefined' ? 'avatar-circle-green' : typeof(_.find(patient.get('day').split(','), function(num) { return num == 'Wed'})) === 'undefined' ? 'avatar-circle-green' : 'avatar-green' %> avatar-sm avatar-inline" date-value="Wed">三</div>
+                                    <div class="daypicker avatar <%= typeof(patient.get('day')) == 'undefined' ? 'avatar-circle-green' : typeof(_.find(patient.get('day').split(','), function(num) { return num == 'Fri'})) === 'undefined' ? 'avatar-circle-green' : 'avatar-green' %> avatar-sm avatar-inline" date-value="Fri">五</div>
+                                </div>
+                                <div class="patient-schedule-picker col-lg-12 col-md-12 col-sm-12">
+                                    <div class="daypicker avatar <%= typeof(patient.get('day')) == 'undefined' ? 'avatar-circle-green' : typeof(_.find(patient.get('day').split(','), function(num) { return num == 'Tue'})) === 'undefined' ? 'avatar-circle-green' : 'avatar-green' %> avatar-sm avatar-inline" date-value="Tue">二</div>
+                                    <div class="daypicker avatar <%= typeof(patient.get('day')) == 'undefined' ? 'avatar-circle-green' : typeof(_.find(patient.get('day').split(','), function(num) { return num == 'Thu'})) === 'undefined' ? 'avatar-circle-green' : 'avatar-green' %> avatar-sm avatar-inline" date-value="Thu">四</div>
+                                    <div class="daypicker avatar <%= typeof(patient.get('day')) == 'undefined' ? 'avatar-circle-green' : typeof(_.find(patient.get('day').split(','), function(num) { return num == 'Sat'})) === 'undefined' ? 'avatar-circle-green' : 'avatar-green' %> avatar-sm avatar-inline" date-value="Sat">六</div>
+                                </div>
+                                <div class="patient-schedule-picker col-lg-12 col-md-12 col-sm-12">
+                                    <select name="period">
+                                        <optgroup label="上午">
+                                            <option value="08300900" <%= patient.get('period') == '08300900' ? 'selected' : '' %>>08:30 - 09:00 (上午八點半到九點)</option>
+                                            <option value="09000930" <%= patient.get('period') == '09000930' ? 'selected' : '' %>>09:00 - 09:30 (上午九點到九點半)</option>
+                                            <option value="09301000" <%= patient.get('period') == '09301000' ? 'selected' : '' %>>09:30 - 10:00 (上午九點半到十點)</option>
+                                            <option value="10001030" <%= patient.get('period') == '10001030' ? 'selected' : '' %>>10:00 - 10:30 (上午十點到十點半)</option>
+                                            <option value="10301100" <%= patient.get('period') == '10301100' ? 'selected' : '' %>>10:30 - 11:00 (上午十點半到十一點)</option>
+                                            <option value="11001130" <%= patient.get('period') == '11001130' ? 'selected' : '' %>>11:00 - 11:30 (上午十一點到十一點半)</option>
+                                        </optgroup>
+                                        <optgroup label="下午">
+                                            <option value="13301400" <%= patient.get('period') == '13301400' ? 'selected' : '' %>>13:30 - 14:00 (下午一點半到兩點)</option>
+                                            <option value="14001430" <%= patient.get('period') == '14001430' ? 'selected' : '' %>>14:00 - 14:30 (下午兩點到兩點半)</option>
+                                            <option value="14301500" <%= patient.get('period') == '14301500' ? 'selected' : '' %>>14:30 - 15:00 (下午兩點半到三點)</option>
+                                            <option value="15001530" <%= patient.get('period') == '15001530' ? 'selected' : '' %>>15:00 - 15:30 (下午三點到三點半)</option>
+                                            <option value="15301600" <%= patient.get('period') == '15301600' ? 'selected' : '' %>>15:30 - 16:00 (下午三點半到四點)</option>
+                                            <option value="16001630" <%= patient.get('period') == '16001630' ? 'selected' : '' %>>16:00 - 16:30 (下午四點到四點半)</option>
+                                        </optgroup>
+                                        <optgroup label="晚上">
+                                            <option value="17301800" <%= patient.get('period') == '17301800' ? 'selected' : '' %>>17:30 - 18:00 (晚上五點半到六點)</option>
+                                            <option value="18001830" <%= patient.get('period') == '18001830' ? 'selected' : '' %>>18:00 - 18:30 (晚上六點到六點半)</option>
+                                            <option value="18301900" <%= patient.get('period') == '18301900' ? 'selected' : '' %>>18:30 - 19:00 (晚上六點半到七點)</option>
+                                            <option value="19001930" <%= patient.get('period') == '19001930' ? 'selected' : '' %>>19:00 - 19:30 (晚上七點到七點半)</option>
+                                            <option value="19302000" <%= patient.get('period') == '19302000' ? 'selected' : '' %>>19:30 - 20:00 (晚上七點半到八點)</option>
+                                            <option value="20002030" <%= patient.get('period') == '20002030' ? 'selected' : '' %>>20:00 - 20:30 (晚上八點到八點半)</option>
+                                            <option value="20302100" <%= patient.get('period') == '20302100' ? 'selected' : '' %>>20:30 - 21:00 (晚上八點半到九點)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group form-group-label">
@@ -265,6 +327,11 @@
     };
 
     $(function() {
+        $("form").submit(function() {
+            $("input").removeAttr("disabled");
+        });
+
+
         $('input[type=radio][name=division]').change(function() {
             $('#innerPointDiv').empty();
             if (this.value == 'Ortho') {
@@ -309,6 +376,19 @@
                     $('#innerPointDiv').find('div.radio').removeClass('disabled');
                 }
             }
+
+        });
+
+        $('.daypicker').on('click', function() {
+            $(this).toggleClass('avatar-circle-green avatar-green');
+
+            var dayVal = [];
+            $('.daypicker').each(function(idx){
+                if($(this).hasClass('avatar-green')){
+                    dayVal.push($(this).attr('date-value'));
+                }
+            });
+            $('input[type=hidden][name=day]').val(dayVal.join());
 
         });
     });

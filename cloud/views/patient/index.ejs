@@ -54,6 +54,16 @@
                             </div>
                             <% } %>
                         </div>
+                        <div class="tile-action tile-action-show">
+                            <ul class="nav nav-list pull-right">
+                                <li>
+                                    <a href="<%= '/patient/' + patient.id + '/edit' %>"><span class="access-hide">Delete</span><span class="icon icon-edit"></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:deletePatient('<%= patient.id %>');"><span class="access-hide">Delete</span><span class="icon icon-delete"></span></a>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="tile-inner">
                             <div class="text-overflow">
                                 【<%= (patient.get('sex') == 'male') ? '男' : '女' %>】<%= patient.get('name') %>
@@ -71,13 +81,8 @@
                             <p>狀態: <small><%= patient.get('kind') %></small></p>
                             <p>健保點數: <small><%= patient.get('insurancePoint') %></small></p>
                             <p>科內點數: <small><%= patient.get('innerPoint') %></small></p>
-                        </div>
-                        <div class="tile-footer">
-                            <ul class="nav nav-list pull-left">
-                                <li>
-                                    <a href="<%= '/patient/' + patient.id + '/edit' %>" class="btn btn-yellow waves-button waves-effect waves-light"><span class="icon icon-check"></span>&nbsp;修改</a>
-                                </li>
-                            </ul>
+                            <p>預約日期: <small><%= patient.get('day') %></small></p>
+                            <p>預約時段: <small><%= patient.get('period') %></small></p>
                         </div>
                     </div>
                 </div>
@@ -102,6 +107,48 @@
 
     </div>
 </div>
+
+    <script>
+        function deletePatient(id) {
+            swal({
+                title: "是否確定刪除?",
+                text: "你真的要刪掉? 刪了就救不回來了喔",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "確定！刪吧",
+                cancelButtonText: "還是不要好了",
+                closeOnConfirm: true
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            $.ajax({
+                                url: '/patient/'+ id,
+                                method: 'POST',
+                                data: {_method:'delete'},
+                                mimeType:"multipart/form-data",
+                                success: function (data, textStatus, jqXHR) {
+                                    console.log('SUCCESS');
+                                    swal({
+                                        title: "完成",
+                                        text: "已成功刪除",
+                                        type: "success",
+                                        timer: 1500,
+                                        showCancelButton: false,
+                                        showConfirmButton: false,
+                                        closeOnConfirm: false
+                                    }, function(){  location.reload();
+                                    });
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(textStatus);
+                                }
+                            });
+                        }
+                    });
+
+        }
+    </script>
 
 </body>
 </html>

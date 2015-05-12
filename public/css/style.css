@@ -121,6 +121,10 @@ span.sch-name-circle {
     line-height: 1.4;
 }
 
+/**** patient form *****/
+.patient-schedule-picker {
+    padding: 10px 10px;
+}
 
 /**** toast use fontAwesome *****/
 #toast-container > .toast {

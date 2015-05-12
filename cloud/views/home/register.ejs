@@ -1,0 +1,75 @@
+<!-- views/home/register.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+
+<% include ../partials/header %>
+<% include ../partials/navigation %>
+
+<div class="content">
+    <div class="content-heading">
+        <div class="container container-full">
+            <div class="row">
+                <div class="col-lg-6 col-lg-push-3 col-sm-10">
+                    <div class="text-overflow">
+                        <span class="icon icon-event-available"></span> 註冊
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-inner">
+        <div class="container">
+            <form class="form" action="/signup" method="post">
+                <div class="form-group form-group-label">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-8">
+                            <label class="floating-label" for="float-text">帳號</label>
+                            <input class="form-control" id="float-text" type="text" name="username" value="<%= typeof(username) != 'undefined' ? username : ''%>">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group-label">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-8">
+                            <label class="floating-label" for="float-text">密碼</label>
+                            <input class="form-control" id="float-text" type="password" name="password">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group-label">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-8">
+                            <label class="floating-label" for="float-text">再次確認密碼</label>
+                            <input class="form-control" id="float-text" type="password" name="passwordConfirm">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-5 col-md-push-1">
+                            <button type="button" class="btn btn-block waves-button waves-effect waves-light" onclick="window.location = '/home/login'">取消</button>
+                        </div>
+                        <div class="col-md-5 col-md-push-1">
+                            <button type="submit" class="btn btn-block btn-blue waves-button waves-effect waves-light">註冊</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
+
+<script>
+    $(function() {
+        <% if (typeof(flash) != 'undefined') {%>
+        toastr["error"]('<%= flash %>',"錯誤");
+        <% }%>
+    });
+</script>

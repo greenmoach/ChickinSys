@@ -2,6 +2,7 @@
  express = require('express');
 var moment = require('moment');
 var _ = require('underscore');
+var requireUser = require('cloud/controllers/require-user');
  app = express();
 
 
@@ -43,11 +44,12 @@ app.post('/therapists', therapistController.create);
 app.get('/therapist/:id/edit', therapistController.edit);
 app.put('/therapist/:id', therapistController.update);
 
-app.get('/patient', patientController.index);
+app.get('/patient', requireUser,patientController.index);
 app.get('/patient/new', patientController.new);
 app.post('/patients', patientController.create);
 app.get('/patient/:id/edit', patientController.edit);
 app.put('/patient/:id', patientController.update);
+app.del('/patient/:id', patientController.delete);
 
 app.get('/schedule/:id/show', scheduleController.show);
 app.get('/schedule/:id/assign', scheduleController.assign);
@@ -57,7 +59,10 @@ app.post('/schedule/:id', scheduleController.update);
 app.get('/', homeController.index);
 app.get('/jobs', homeController.jobs);
 app.get('/check/:id/:status', homeController.check);
-
+app.get('/register', homeController.register);
+app.post('/signup', homeController.signup);
+app.get('/login', homeController.login);
+app.post('/loginAction', homeController.loginAction);
 
 
 // // Example reading from the request query string of an HTTP get request.

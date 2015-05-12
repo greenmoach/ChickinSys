@@ -25,7 +25,7 @@ exports.new = function(req, res) {
 exports.create = function(req, res) {
     var patient = new Patient();
 
-    patient.save(_.pick(req.body, 'name', 'sex','bDay', 'chartNo', 'division','kind', 'insurancePoint', 'innerPoint', 'diagnosis')).then(function() {
+    patient.save(_.pick(req.body, 'name', 'sex','bDay', 'chartNo', 'division','kind', 'insurancePoint', 'innerPoint', 'diagnosis', 'day', 'period', 'firstDate')).then(function() {
             res.redirect('/patient');
         },
         function(error) {
@@ -54,10 +54,22 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
     var patient = new Patient();
     patient.id = req.params.id;
-    patient.save(_.pick(req.body, 'name', 'sex','bDay', 'chartNo', 'division','kind', 'insurancePoint', 'innerPoint', 'diagnosis')).then(function() {
+    patient.save(_.pick(req.body, 'name', 'sex','bDay', 'chartNo', 'division','kind', 'insurancePoint', 'innerPoint', 'diagnosis', 'day', 'period', 'firstDate')).then(function() {
             res.redirect('/patient');
         },
         function() {
             res.send(500, 'Failed saving therapist');
         });
+};
+
+exports.delete = function(req, res) {
+    var patient = new Patient();
+    patient.id = req.params.id;
+
+    patient.destroy().then(function() {
+        res.send(200, 'Success deleting patient');
+    },
+    function() {
+        res.send(500, 'Failed deleting patient');
+    });
 };

@@ -139,7 +139,7 @@
                 <div class="form-group">
                     <div class="row" id="innerPointDiv">
                         <div class="col-lg-2 col-md-2 col-sm-4">
-                            <label class="form-icon-label">院內點數</label>
+                            <label class="form-icon-label">科內點數</label>
                         </div>
                         <div class="col-lg-10 col-md-10 col-sm-12" >
                             <div class="radio radio-adv radio-inline">
@@ -167,7 +167,7 @@
                             <label class="form-icon-label" for="datepicker-adv">初診日期</label>
                         </div>
                         <div class="col-lg-10 col-md-10 col-sm-12">
-                            <input class="datepicker-adv datepicker-adv-default form-control" id="datepicker-adv" type="text">
+                            <input class="datepicker-adv datepicker-adv-default form-control" id="datepicker-adv" type="text" name="firstDate">
                         </div>
                     </div>
                 </div>
@@ -180,17 +180,17 @@
                         <input type="hidden" name="day"/>
                         <div class="col-lg-10 col-md-10 col-sm-12">
                             <div class="row">
-                                <div>
+                                <div class="patient-schedule-picker col-lg-12 col-md-12 col-sm-12">
                                     <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Mon">一</div>
                                     <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Wed">三</div>
                                     <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Fri">五</div>
                                 </div>
-                                <div>
+                                <div class="patient-schedule-picker col-lg-12 col-md-12 col-sm-12">
                                     <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Tue">二</div>
                                     <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Thu">四</div>
                                     <div class="daypicker avatar avatar-circle-green avatar-sm avatar-inline" date-value="Sat">六</div>
                                 </div>
-                                <div>
+                                <div class="patient-schedule-picker col-lg-12 col-md-12 col-sm-12">
                                     <select name="period">
                                         <optgroup label="上午">
                                             <option value="08300900">08:30 - 09:00 (上午八點半到九點)</option>
@@ -219,7 +219,6 @@
                                         </optgroup>
                                     </select>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -304,6 +303,10 @@
     };
 
     $(function() {
+        $("form").submit(function() {
+            $("input").removeAttr("disabled");
+        });
+
         $('input[type=radio][name=division]').change(function() {
             $('#innerPointDiv').empty();
             if (this.value == 'Ortho') {
@@ -361,7 +364,6 @@
                     dayVal.push($(this).attr('date-value'));
                 }
             });
-            console.log(dayVal.join());
             $('input[type=hidden][name=day]').val(dayVal.join());
 
         });
