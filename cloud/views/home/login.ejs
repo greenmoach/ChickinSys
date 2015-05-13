@@ -83,7 +83,7 @@
 
 <script>
     $(function() {
-        <% if (typeof(flash) != 'undefined') {%>
+        <% if (locals.flash) {%>
         toastr["error"]('<%= flash %>',"錯誤");
         <% }%>
     });

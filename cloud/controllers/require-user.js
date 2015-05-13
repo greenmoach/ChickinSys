@@ -8,6 +8,7 @@ module.exports = function(req, res, next) {
         next();
     } else {
         console.log(Parse.User.current());
+        //res.redirect('/login');
         res.render('home/login', { flash: '請先登入' });
     }
 }

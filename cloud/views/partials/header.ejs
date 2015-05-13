@@ -19,6 +19,14 @@
                 <span class="header-close icon icon-close"></span>
             </a>
         </li>
+        <% if (!Parse.User.current()) { %>
+        <li>
+            <a href="/">Share an image</a>
+            | <a href="/i/latest">Latest</a>
+            | <a href="/login">Login</a>
+            | <a href="/signup">Signup</a>
+        </li>
+        <% } else { %>
         <li>
             <a class="menu-toggle" href="#profile">
                 <span class="access-hide"><%= Parse.User.current() ? Parse.User.current().get('username') : '' %></span>
@@ -26,5 +34,14 @@
                 <span class="header-close icon icon-close"></span>
             </a>
         </li>
+        <li>
+            <a href="/i/mine"><%= Parse.User.current().get('username') %></a>
+            | <a href="/">Share an image</a>
+            | <form action="/logout" method="post">
+                <a href="#" data-action="post">Logout</a>
+            </form>
+        </li>
+        <% } %>
+
     </ul>
 </header>

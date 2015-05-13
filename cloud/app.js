@@ -1,9 +1,11 @@
 // These two lines are required to initialize Express in Cloud Code.
  express = require('express');
 var parseExpressCookieSession = require('parse-express-cookie-session');
+var parseExpressHttpsRedirect = require('parse-express-https-redirect');
 var moment = require('moment');
 var _ = require('underscore');
 var requireUser = require('cloud/controllers/require-user');
+
  app = express();
 
 
@@ -17,6 +19,7 @@ var homeController = require('cloud/controllers/home.js');
 // Global app configuration section
 app.set('views', 'cloud/views');  // Specify the folder to find templates
 app.set('view engine', 'ejs');    // Set the template engine
+app.use(parseExpressHttpsRedirect());    // Automatically redirect non-secure urls to secure ones
 app.use(express.bodyParser());    // Middleware for reading request body
 app.use(express.methodOverride());
 app.use(express.cookieParser('SECRET_SIGNING_KEY'));
@@ -65,7 +68,7 @@ app.get('/schedule/:id/assign', scheduleController.assign);
 app.get('/schedule/:id/now', scheduleController.schedules);
 app.post('/schedule/:id', scheduleController.update);
 
-app.get('/', homeController.index);
+app.get('/',requireUser, homeController.index);
 app.get('/jobs', homeController.jobs);
 app.get('/check/:id/:status', homeController.check);
 app.get('/register', homeController.register);
