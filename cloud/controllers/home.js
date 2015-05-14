@@ -22,17 +22,16 @@ exports.jobs = function(req, res) {
     query.find().then(function( models ){
             if (models.length == 0) {
                 GenJobs({ success: function(){
-                    query.equalTo("day", day_list[today.getDay()]);
-                    query.equalTo("therapistId", 'OYnzMphxij');
+                    query.equalTo("therapist", Parse.User.current());
                     query.find().then(function(jobs) {
-                        var dailyJobs = [];
-                        var pq  = new Parse.Query(Patient);
-                        pq.find().then(function(patients) {
+                        var patQuery = new Parse.Query(Patient);
+                        patQuery.find().then(function(pats){
+                            var dailyJobs = [];
                             _.each(jobs, function(job){
-                                var patient =_.find(patients, function(pa){
-                                    return pa.id == job.get('patientId');
+                                var findPat = _.find(pats, function(num){
+                                    return num.id == job.get('patient').id
                                 });
-                                dailyJobs.push({ job: job, pa: patient });
+                                dailyJobs.push({ job: job, pa: findPat });
                             });
                             res.json(dailyJobs);
                         });
@@ -43,17 +42,16 @@ exports.jobs = function(req, res) {
                     }});
             }
             else {
-                query.equalTo("day", day_list[today.getDay()]);
-                query.equalTo("therapistId", 'OYnzMphxij');
+                query.equalTo("therapist", Parse.User.current());
                 query.find().then(function(jobs) {
-                    var dailyJobs = [];
-                    var pq  = new Parse.Query(Patient);
-                    pq.find().then(function(patients) {
+                    var patQuery = new Parse.Query(Patient);
+                    patQuery.find().then(function(pats){
+                        var dailyJobs = [];
                         _.each(jobs, function(job){
-                            var patient =_.find(patients, function(pa){
-                                return pa.id == job.get('patientId');
+                            var findPat = _.find(pats, function(num){
+                                return num.id == job.get('patient').id
                             });
-                            dailyJobs.push({ job: job, pa: patient });
+                            dailyJobs.push({ job: job, pa: findPat });
                         });
                         res.json(dailyJobs);
                     });
@@ -114,7 +112,6 @@ exports.login = function(req, res) {
 
 exports.loginAction = function(req, res) {
     Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
-        console.log(user);
         res.redirect('/');
 
     }, function(error) {
@@ -123,42 +120,43 @@ exports.loginAction = function(req, res) {
     });
 }
 
+Date.prototype.addHours= function(h){
+    this.setHours(this.getHours()+h);
+    return this;
+}
+
 var GenJobs = function(callback) {
-    var query = new Parse.Query(Schedule);
-    query.find().then(function(schedules) {
-            var query  = new Parse.Query(Patient);
-            query.find().then(function(patiens) {
-                    _.each(schedules, function(sche) {
-                        var fPat = _.find(patiens, function(pat){
-                            return sche.get('patientId') == pat.id;
-                        });
-                        var dailyJob = new DailyJob();
-                        dailyJob.set("patientId",sche.get('patientId'));
-                        dailyJob.set("therapistId",sche.get('therapistId'));
-                        dailyJob.set("day",sche.get('day'));
-                        dailyJob.set("period",sche.get('period'));
-                        dailyJob.set("kind",fPat.get('kind'));
-                        dailyJob.set("division",fPat.get('division'));
-                        dailyJob.set("insurancePoint",fPat.get('insurancePoint'));
-                        dailyJob.set("innerPoint",fPat.get('innerPoint'));
-                        dailyJob.set("status","Line");
+    var day_list = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var today = new Date();
+    console.log('=======' + day_list[today.addHours(8).getDay()]);
+    var query  = new Parse.Query(Patient);
+    query.find().then(function(patiens) {
+        _.each(patiens, function(pat) {
+            if ( typeof (pat.get('day')) != 'undefined' && _.contains(pat.get('day').split(','), day_list[today.getDay()])) {
+                var dailyJob = new DailyJob();
+                dailyJob.set("patient", pat);
+                dailyJob.set("therapist", pat.get('therapist'));
+                dailyJob.set("day", pat.get('day'));
+                dailyJob.set("period", pat.get('period'));
+                dailyJob.set("kind", pat.get('kind'));
+                dailyJob.set("division", pat.get('division'));
+                dailyJob.set("insurancePoint", pat.get('insurancePoint'));
+                dailyJob.set("innerPoint", pat.get('innerPoint'));
+                dailyJob.set("status", "Line");
 
-
-                        dailyJob.save(null, {
-                            success: function(dailyJob) {
-                            },
-                            error: function(dailyJob, error) {
-                                callback.error(error);
-                            }
-                        });
-                    });
-                    callback.success();
-                },
-                function(error) {
-                    callback.error(error);
+                dailyJob.save(null, {
+                    success: function (dailyJob) {
+                    },
+                    error: function (dailyJob, error) {
+                        callback.error(error);
+                    }
                 });
-        },
+            }
+        });
+        callback.success();
+    },
         function(error) {
             callback.error(error);
         });
+
 }

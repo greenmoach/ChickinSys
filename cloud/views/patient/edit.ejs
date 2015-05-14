@@ -138,7 +138,7 @@
                 <div class="form-group">
                     <div class="row" id="innerPointDiv">
                         <div class="col-lg-2 col-md-2 col-sm-4">
-                            <label class="form-icon-label">院內點數</label>
+                            <label class="form-icon-label">科內點數</label>
                         </div>
                         <div class="col-lg-10 col-md-10 col-sm-12" >
                             <% if (patient.get('division') == 'Neuro') { %>
@@ -183,7 +183,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-lg-2 col-md-2 col-sm-4">
-                            <label class="form-icon-label" for="datepicker-adv">初診日期</label>
+                            <label class="form-icon-label" for="datepicker-adv">發病日期</label>
                         </div>
                         <div class="col-lg-10 col-md-10 col-sm-12">
                             <input class="datepicker-adv datepicker-adv-default form-control" id="datepicker-adv" type="text" value="<%= patient.get('firstDate')%>" name="firstDate">
@@ -248,6 +248,40 @@
                             <label for="taDiagnosis" class="floating-label">治療項目</label>
                             <textarea class="form-control textarea-autosize" id="taDiagnosis" rows="1"><%= patient.get('diagnosis') %></textarea>
 
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-4">
+                            <label class="form-icon-label">疾病分類</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-12">
+                            <select name="category">
+                                <option value="背痛" <%= patient.get('category') == '背痛' ? 'selected' : '' %>>背痛</option>
+                                <option value="頸部疼痛" <%= patient.get('category') == '頸部疼痛' ? 'selected' : '' %>>頸部疼痛</option>
+                                <option value="肌腱炎" <%= patient.get('category') == '肌腱炎' ? 'selected' : '' %>>肌腱炎</option>
+                                <option value="筋肌膜炎" <%= patient.get('category') == '筋肌膜炎' ? 'selected' : '' %>>筋肌膜炎</option>
+                                <option value="冰凍肩" <%= patient.get('category') == '冰凍肩' ? 'selected' : '' %>>冰凍肩</option>
+                                <option value="髕骨軟骨軟化症" <%= patient.get('category') == '髕骨軟骨軟化症' ? 'selected' : '' %>>髕骨軟骨軟化症</option>
+                                <option value="四肢關節炎" <%= patient.get('category') == '四肢關節炎' ? 'selected' : '' %>>四肢關節炎</option>
+                                <option value="手部外傷" <%= patient.get('category') == '手部外傷' ? 'selected' : '' %>>手部外傷</option>
+                                <option value="扭傷" <%= patient.get('category') == '扭傷' ? 'selected' : '' %>>扭傷</option>
+                                <option value="腳掌肌膜炎" <%= patient.get('category') == '腳掌肌膜炎' ? 'selected' : '' %>>腳掌肌膜炎</option>
+                                <option value="骨折" <%= patient.get('category') == '骨折' ? 'selected' : '' %>>骨折</option>
+                                <option value="關節置換" <%= patient.get('category') == '關節置換' ? 'selected' : '' %>>關節置換</option>
+                                <option value="燙傷" <%= patient.get('category') == '燙傷' ? 'selected' : '' %>>燙傷</option>
+                                <option value="周邊神經病變或損傷" <%= patient.get('category') == '周邊神經病變或損傷' ? 'selected' : '' %>>周邊神經病變或損傷</option>
+                                <option value="腦血管疾病" <%= patient.get('category') == '腦血管疾病' ? 'selected' : '' %>>腦血管疾病</option>
+                                <option value="脊髓損傷" <%= patient.get('category') == '脊髓損傷' ? 'selected' : '' %>>脊髓損傷</option>
+                                <option value="頭部外傷" <%= patient.get('category') == '頭部外傷' ? 'selected' : '' %>>頭部外傷</option>
+                                <option value="心臟血管疾病" <%= patient.get('category') == '心臟血管疾病' ? 'selected' : '' %>>心臟血管疾病</option>
+                                <option value="慢性阻塞性肺病" <%= patient.get('category') == '慢性阻塞性肺病' ? 'selected' : '' %>>慢性阻塞性肺病</option>
+                                <option value="發展遲緩" <%= patient.get('category') == '發展遲緩' ? 'selected' : '' %>>發展遲緩</option>
+                                <option value="腦性麻痺" <%= patient.get('category') == '腦性麻痺' ? 'selected' : '' %>>腦性麻痺</option>
+                                <option value="斜頸" <%= patient.get('category') == '斜頸' ? 'selected' : '' %>>斜頸</option>
+                                <option value="其他" <%= patient.get('category') == '其他' ? 'selected' : '' %>>其他</option>
+                            </select>
                         </div>
                     </div>
                 </div>

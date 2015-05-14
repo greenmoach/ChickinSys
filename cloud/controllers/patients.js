@@ -8,6 +8,7 @@ var Patient = Parse.Object.extend('Patient');
 // Display all patients
 exports.index = function(req, res) {
     var query = new Parse.Query('Patient');
+    query.equalTo('therapist', Parse.User.current());
     query.find().then(function(results){
             res.render('patient/index', { patients : results});
         },
@@ -24,7 +25,7 @@ exports.new = function(req, res) {
 // Create a new patient
 exports.create = function(req, res) {
     var patient = new Patient();
-
+    patient.set('therapist', Parse.User.current());
     patient.save(_.pick(req.body, 'name', 'sex','bDay', 'chartNo', 'division','kind', 'insurancePoint', 'innerPoint', 'diagnosis', 'day', 'period', 'firstDate')).then(function() {
             res.redirect('/patient');
         },

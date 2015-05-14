@@ -29,17 +29,10 @@
         <% } else { %>
         <li>
             <a class="menu-toggle" href="#profile">
-                <span class="access-hide"><%= Parse.User.current() ? Parse.User.current().get('username') : '' %></span>
-                <span class="avatar avatar-sm"></span>
+                <span class="access-hide"><%= Parse.User.current().get('username') %></span>
+                <span class="avatar avatar-sm"> <%= Parse.User.current().get('username').substr(0,1).toUpperCase() %></span>
                 <span class="header-close icon icon-close"></span>
             </a>
-        </li>
-        <li>
-            <a href="/i/mine"><%= Parse.User.current().get('username') %></a>
-            | <a href="/">Share an image</a>
-            | <form action="/logout" method="post">
-                <a href="#" data-action="post">Logout</a>
-            </form>
         </li>
         <% } %>
 
