@@ -51,7 +51,7 @@ exports.edit = function(req, res) {
         });
 };
 
-// Update a therapist based on patient id, name and sex etc..
+// Update a patient based on patient id, name and sex etc..
 exports.update = function(req, res) {
     var patient = new Patient();
     patient.id = req.params.id;
@@ -61,6 +61,76 @@ exports.update = function(req, res) {
         function() {
             res.send(500, 'Failed saving therapist');
         });
+};
+
+
+exports.manager = function(req, res) {
+    res.render('patient/manager', {});
+};
+
+exports.owns = function(req, res) {
+    var query = new Parse.Query('Patient');
+    query.equalTo('therapist', Parse.User.current());
+    query.find().then(function(results){
+            res.json(results);
+        },
+        function() {
+            res.send(500, 'Failed loading patients');
+        });
+};
+
+exports.unassigned = function(req, res) {
+    var query = new Parse.Query('Patient');
+    query.equalTo('therapist', null);
+    query.find().then(function(results){
+            res.json(results);
+        },
+        function() {
+            res.send(500, 'Failed loading patients');
+        });
+};
+
+exports.add = function(req, res) {
+    var query = new Parse.Query('Patient');
+    query.get(req.params.id, {
+        success: function(patient) {
+            // The object was retrieved successfully.
+            patient.set('therapist', Parse.User.current());
+            patient.save(null).then(function() {
+                    res.send(200);
+                },
+                function(error) {
+                    res.send(500, 'Failed add patient: ' + error.message);
+                });
+        },
+        error: function(object, error) {
+            // The object was not retrieved successfully.
+            // error is a Parse.Error with an error code and message.
+            res.send(500, 'Failed fetch patient: ' + error.message);
+        }
+    });
+
+};
+
+exports.remove = function(req, res) {
+    var query = new Parse.Query('Patient');
+    query.get(req.params.id, {
+        success: function(patient) {
+            // The object was retrieved successfully.
+            patient.set('therapist', null);
+            patient.save(null).then(function() {
+                    res.send(200);
+                },
+                function(error) {
+                    res.send(500, 'Failed add patient: ' + error.message);
+                });
+        },
+        error: function(object, error) {
+            // The object was not retrieved successfully.
+            // error is a Parse.Error with an error code and message.
+            res.send(500, 'Failed fetch patient: ' + error.message);
+        }
+    });
 };
 
 exports.delete = function(req, res) {

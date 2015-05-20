@@ -46,20 +46,20 @@
         <div class="menu-wrap">
             <div class="menu-top">
                 <div class="menu-top-img">
-                    <img alt="John Smith" src="images/samples/landscape.jpg">
+                    <img alt="menu image" src="/images/menu-bg.png">
                 </div>
                 <div class="menu-top-info">
-                    <a class="menu-top-user" href="javascript:void(0)"><span class="avatar pull-left"><img alt="alt text for John Smith avatar" src="images/users/avatar-001.jpg"></span>John Smith</a>
+                    <a class="menu-top-user" href="javascript:void(0)"><span class="avatar pull-left"><img alt="avatar" src="/images/users/avatar-001.jpg"></span><%= Parse.User.current() ? Parse.User.current().get('username').toUpperCase() : "" %></a>
                 </div>
             </div>
             <div class="menu-content">
                 <ul class="nav">
-                    <li>
-                        <a href="javascript:void(0)"><span class="icon icon-account-box"></span>Profile Settings</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)"><span class="icon icon-add-to-photos"></span>Upload Photo</a>
-                    </li>
+                    <!--<li>-->
+                        <!--<a href="javascript:void(0)"><span class="icon icon-account-box"></span>Profile Settings</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="javascript:void(0)"><span class="icon icon-add-to-photos"></span>Upload Photo</a>-->
+                    <!--</li>-->
                     <li>
                         <a href="/logout"><span class="icon icon-exit-to-app"></span>Logout</a>
                     </li>

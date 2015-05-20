@@ -192,8 +192,7 @@
     }
 
     function checkAction(elem, finishCallback) {
-        elem.addClass(animationShake).one(animationEnd, function() {
-            elem.removeClass(animationShake).addClass(animationFadeOut).one(animationEnd, function() {
+        elem.addClass(animationFadeOut).one(animationEnd, function() {
                 var id = elem.find('#dailyJobId').val();
                 $.ajax({
                     url: '/check/' + id + '/Check',
@@ -212,13 +211,11 @@
                         toastr["error"]("Oops!發生錯誤了，請再試一次","報到");
                     }
                 });
-            });
         });
     };
 
     function offAction(elem, finishCallback) {
-        elem.addClass(animationShake).one(animationEnd, function() {
-            elem.removeClass(animationShake).addClass(animationFadeOut).one(animationEnd, function() {
+        elem.addClass(animationFadeOut).one(animationEnd, function() {
                 var id = elem.find('#dailyJobId').val();
                 $.ajax({
                     url: '/check/' + id + '/Off',
@@ -238,12 +235,10 @@
                     }
                 });
             });
-        });
     };
 
     function lineAction(elem, finishCallback) {
-        elem.addClass(animationShake).one(animationEnd, function() {
-            elem.removeClass(animationShake).addClass(animationHinge).one(animationEnd, function() {
+        elem.addClass(animationFadeOut).one(animationEnd, function() {
                 var id = elem.find('#dailyJobId').val();
                 $.ajax({
                     url: '/check/' + id + '/Line',
@@ -262,7 +257,6 @@
                         toastr["error"]("Oops!發生錯誤了，請再試一次","未報到");
                     }
                 });
-            });
         });
     };
 

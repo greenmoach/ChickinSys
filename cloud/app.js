@@ -62,6 +62,11 @@ app.post('/patients', patientController.create);
 app.get('/patient/:id/edit', patientController.edit);
 app.put('/patient/:id', patientController.update);
 app.del('/patient/:id', patientController.delete);
+app.get('/patient/owns', patientController.owns);
+app.get('/patient/unassigned', patientController.unassigned);
+app.get('/patient/:id/add', patientController.add);
+app.get('/patient/:id/remove', patientController.remove);
+app.get('/patient/manager', patientController.manager);
 
 app.get('/schedule/:id/show', scheduleController.show);
 app.get('/schedule/:id/assign', scheduleController.assign);

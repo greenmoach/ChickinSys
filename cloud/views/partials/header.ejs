@@ -21,16 +21,15 @@
         </li>
         <% if (!Parse.User.current()) { %>
         <li>
-            <a href="/">Share an image</a>
-            | <a href="/i/latest">Latest</a>
-            | <a href="/login">Login</a>
-            | <a href="/signup">Signup</a>
+            <a class="menu-toggle" href="/login">
+                <span class="header-close icon icon-close"></span>
+            </a>
         </li>
         <% } else { %>
         <li>
             <a class="menu-toggle" href="#profile">
                 <span class="access-hide"><%= Parse.User.current().get('username') %></span>
-                <span class="avatar avatar-sm"> <%= Parse.User.current().get('username').substr(0,1).toUpperCase() %></span>
+                <span class="avatar avatar-sm"> <img alt="avatar" src="/images/users/avatar-001.jpg"> </span>
                 <span class="header-close icon icon-close"></span>
             </a>
         </li>

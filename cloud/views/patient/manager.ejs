@@ -1,0 +1,271 @@
+<!-- views/patient/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+
+<% include ../partials/navigation.ejs %>
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<div class="content">
+    <div class="content-heading">
+        <div class="container container-full">
+            <div class="row">
+                <div class="col-lg-6 col-lg-push-3 col-sm-10">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="/"><span class="icon icon-home"></span>HOME</a>
+                        </li>
+                        <li>
+                            <a href="/patient">PATIENTS</a>
+                        </li>
+                        <li class="active">
+                            <a href="/patient/manager">MANAGER</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-inner">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12 col-md12 col-sm-6">
+                    <h2 class="content-sub-heading">現有的病人</h2>
+                    <div class="tile-wrap tile-wrap-animation tile-owns">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md12 col-sm-6">
+                    <h2 class="content-sub-heading">尚未指定的病人</h2>
+                    <div class="tile-wrap tile-wrap-animation tile-unassigned">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+<script type="text/template" class="owns">
+    <div class="tile">
+        <div class="pull-left tile-side">
+            <div class="avatar avatar-blue avatar-sm">
+                {{ if (kind == 'Inpatient') { }}
+                <div class="avatar avatar-red avatar-sm">
+                    住
+                </div>
+                {{ } else { }}
+                <div class="avatar avatar-blue avatar-sm">
+                    門
+                </div>
+                {{ } }}
+            </div>
+        </div>
+        <div class="tile-action tile-action-show">
+            <ul class="nav nav-list pull-right">
+                <li>
+                    <a href="javascript:removePatients('{{= objectId }}')"><span class="access-hide">remove</span><span class="icon icon-remove"></span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="tile-inner">
+            <span class="text-overflow">
+                【{{= (sex == 'male') ? '男' : '女' }}】{{= name }}
+                <span>{{= insurancePoint }}</span>
+                <span>{{= innerPoint }}</span>
+            </span>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" class="unassigned">
+    <div class="tile">
+        <div class="pull-left tile-side">
+            <div class="avatar avatar-blue avatar-sm">
+                {{ if (kind == 'Inpatient') { }}
+                <div class="avatar avatar-red avatar-sm">
+                    住
+                </div>
+                {{ } else { }}
+                <div class="avatar avatar-blue avatar-sm">
+                    門
+                </div>
+                {{ } }}
+            </div>
+        </div>
+        <div class="tile-action tile-action-show">
+            <ul class="nav nav-list pull-right">
+                <li>
+                    <a href="javascript:addPatients('{{= objectId }}')"><span class="access-hide">Add</span><span class="icon icon-add"></span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="tile-inner">
+            <span class="text-overflow">
+                【{{= (sex == 'male') ? '男' : '女' }}】{{= name }}
+                <span>{{= insurancePoint }}</span>
+                <span>{{= innerPoint }}</span>
+            </span>
+        </div>
+    </div>
+</script>
+
+<script>
+    _.templateSettings = {
+        interpolate: /\{\{\=(.+?)\}\}/g,
+        evaluate: /\{\{(.+?)\}\}/g
+    };
+
+    $(function() {
+        ownsPatients();
+        unassignedPatients();
+
+    });
+
+    function ownsPatients() {
+        $.ajax({
+            url: '/patient/owns',
+            contentType: "application/json;charset=utf-8",
+            method: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                var template = _.template(
+                        $( "script.owns" ).html()
+                );
+
+                _.each(data, function(elem){
+                    // Render the underscore template and inject it after the H1
+                    // in our current DOM.
+                    $( ".tile-owns" ).append(
+                            template( elem )
+                    );
+
+                });
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr["error"]("取得不到您的病人", "Oops!");
+            }
+        });
+    }
+
+    function unassignedPatients() {
+        $.ajax({
+            url: '/patient/unassigned',
+            contentType: "application/json;charset=utf-8",
+            method: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                var template = _.template(
+                        $( "script.unassigned" ).html()
+                );
+
+                _.each(data, function(elem){
+                    // Render the underscore template and inject it after the H1
+                    // in our current DOM.
+                    $( ".tile-unassigned" ).append(
+                            template( elem )
+                    );
+
+                });
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr["error"]("取得未指定治療師的病人失敗囉","Oops!");
+            }
+        });
+    }
+
+    function clearList() {
+        $( ".tile-owns").empty();
+        $( ".tile-unassigned").empty();
+    }
+
+    function addPatients(id) {
+        $.ajax({
+            url: '/patient/' + id + '/add',
+            contentType: "application/json;charset=utf-8",
+            method: 'GET',
+            success: function (data, textStatus, jqXHR) {
+                toastr["info"]("已成功加入","完成");
+                clearList()
+                ownsPatients();
+                unassignedPatients();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr["error"]("加入發生錯誤","Oops!");
+            }
+        });
+    }
+
+    function removePatients(id) {
+        $.ajax({
+            url: '/patient/' + id + '/remove',
+            contentType: "application/json;charset=utf-8",
+            method: 'GET',
+            success: function (data, textStatus, jqXHR) {
+                toastr["info"]("已成功移除","完成");
+                clearList()
+                ownsPatients();
+                unassignedPatients();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr["error"]("移除發生錯誤","Oops!");
+            }
+        });
+    }
+
+    function deletePatient(id) {
+        swal({
+                    title: "是否確定刪除?",
+                    text: "你真的要刪掉? 刪了就救不回來了喔",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "確定！刪吧",
+                    cancelButtonText: "還是不要好了",
+                    closeOnConfirm: true
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+                        $.ajax({
+                            url: '/patient/'+ id,
+                            method: 'POST',
+                            data: {_method:'delete'},
+                            mimeType:"multipart/form-data",
+                            success: function (data, textStatus, jqXHR) {
+                                console.log('SUCCESS');
+                                swal({
+                                    title: "完成",
+                                    text: "已成功刪除",
+                                    type: "success",
+                                    timer: 1500,
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                    closeOnConfirm: false
+                                }, function(){  location.reload();
+                                });
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.log(textStatus);
+                            }
+                        });
+                    }
+                });
+
+    }
+</script>
+
+</body>
+</html>
