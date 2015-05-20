@@ -108,7 +108,7 @@ exports.signup = function(req, res) {
 
 exports.login = function(req, res) {
     res.render('home/login', { });
-}
+};
 
 exports.loginAction = function(req, res) {
     Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
@@ -118,7 +118,12 @@ exports.loginAction = function(req, res) {
         // Show the error message and let the user try again
         res.render('home/login', {username: req.body.username, flash: error.message });
     });
-}
+};
+
+exports.logout = function(req, res) {
+    Parse.User.logOut();
+    res.render('home/login', { });
+};
 
 Date.prototype.addHours= function(h){
     this.setHours(this.getHours()+h);

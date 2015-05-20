@@ -75,7 +75,7 @@ app.get('/register', homeController.register);
 app.post('/signup', homeController.signup);
 app.get('/login', homeController.login);
 app.post('/loginAction', homeController.loginAction);
-
+app.get('/logout', homeController.logout);
 
 // // Example reading from the request query string of an HTTP get request.
 // app.get('/test', function(req, res) {
