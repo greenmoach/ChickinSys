@@ -24,6 +24,16 @@
     </div>
     <div class="content-inner">
         <div class="container container-full">
+            <div class="btn-date-jump">
+                <i class="icon icon-keyboard-arrow-right"  data-toggle="collapse" data-target="#collapseDatepicker" aria-expanded="false" aria-controls="collapseDatepicker"></i>
+            </div>
+
+            <div class="collapse" id="collapseDatepicker">
+                <div class="input-date-jump">
+                    請選擇一天 : <input class="datepicker-adv datepicker-adv-default" id="datepicker-adv" type="text">
+                </div>
+            </div>
+            <div class="line-date-jump"></div>
             <div class="job-zone row">
 
             </div>
@@ -51,10 +61,10 @@
 
 <script type="text/template" class="lineUp">
     <div class="col-lg-1 col-md-2 col-sm-4">
-        <div class="card card-green">
+        <div class="card card-blue">
             <div class="card-main card-main-ext">
                 <div class="card-inner card-inner-ext">
-                    <p class="card-name-heading text-green">{{= pa.name }}</p>
+                    <p class="card-name-heading text-blue">{{= pa.name }}</p>
                 </div>
                 <span class="name-circle-xs circle-posi circle-raised">{{= pa.name.substr(0,1) }}</span>
                 <div class="card-action">
@@ -80,7 +90,19 @@
     };
 
     $(function(){
-        todyPatients();
+        // day picking action
+        var picker = $('#datepicker-adv').pickadate('picker');
+        picker.on({
+            set: function(elem) {
+                // collapse date jump picker
+                $('#collapseDatepicker').collapse('hide');
+
+                var selected = new Date(elem.select);
+                dailyJobs(selected.getFullYear() + '-' + (selected.getMonth() + 1) + '-' + selected.getDate());
+            }
+        });
+        var selected = new Date();
+        dailyJobs(selected.getFullYear() + '-' + (selected.getMonth() + 1) + '-' + selected.getDate());
 
         toastr.options = {
             "closeButton": true,
@@ -104,9 +126,9 @@
 
     var jobData = null;
 
-    function todyPatients() {
+    function dailyJobs(day) {
         $.ajax({
-            url: '/jobs/',
+            url: '/jobs/' + day,
             contentType: "application/json;charset=utf-8",
             method: 'GET',
             dataType: 'json',
@@ -192,71 +214,71 @@
     }
 
     function checkAction(elem, finishCallback) {
-        elem.addClass(animationFadeOut).one(animationEnd, function() {
-                var id = elem.find('#dailyJobId').val();
-                $.ajax({
-                    url: '/check/' + id + '/Check',
-                    contentType: "application/json;charset=utf-8",
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function (data, textStatus, jqXHR) {
-                        var obj = _.find(jobData, function (item) {
-                            return item.job.objectId == data.objectId;
-                        });
-                        obj.job = data;
-                        finishCallback();
-                        toastr["success"]("【" + obj.pa.name + "】已完成報到","報到");
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        toastr["error"]("Oops!發生錯誤了，請再試一次","報到");
-                    }
+
+        elem.addClass(animationFadeOut).one(animationEnd, function() { });
+
+        var id = elem.find('#dailyJobId').val();
+        $.ajax({
+            url: '/check/' + id + '/Check',
+            contentType: "application/json;charset=utf-8",
+            method: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                var obj = _.find(jobData, function (item) {
+                    return item.job.objectId == data.objectId;
                 });
+                obj.job = data;
+                finishCallback();
+                toastr["success"]("【" + obj.pa.name + "】已完成報到","報到");
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr["error"]("Oops!發生錯誤了，請再試一次","報到");
+            }
         });
     };
 
     function offAction(elem, finishCallback) {
-        elem.addClass(animationFadeOut).one(animationEnd, function() {
-                var id = elem.find('#dailyJobId').val();
-                $.ajax({
-                    url: '/check/' + id + '/Off',
-                    contentType: "application/json;charset=utf-8",
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function (data, textStatus, jqXHR) {
-                        var obj = _.find(jobData, function (item) {
-                            return item.job.objectId == data.objectId;
-                        });
-                        obj.job = data;
-                        finishCallback();
-                        toastr["warning"]("【" + obj.pa.name + "】已完成請假","請假");
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        toastr["error"]("Oops!發生錯誤了，請再試一次","請假");
-                    }
+        elem.addClass(animationFadeOut).one(animationEnd, function() { });
+
+        var id = elem.find('#dailyJobId').val();
+        $.ajax({
+            url: '/check/' + id + '/Off',
+            contentType: "application/json;charset=utf-8",
+            method: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                var obj = _.find(jobData, function (item) {
+                    return item.job.objectId == data.objectId;
                 });
-            });
+                obj.job = data;
+                finishCallback();
+                toastr["warning"]("【" + obj.pa.name + "】已完成請假","請假");
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr["error"]("Oops!發生錯誤了，請再試一次","請假");
+            }
+        });
     };
 
     function lineAction(elem, finishCallback) {
-        elem.addClass(animationFadeOut).one(animationEnd, function() {
-                var id = elem.find('#dailyJobId').val();
-                $.ajax({
-                    url: '/check/' + id + '/Line',
-                    contentType: "application/json;charset=utf-8",
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function (data, textStatus, jqXHR) {
-                        var obj = _.find(jobData, function (item) {
-                            return item.job.objectId == data.objectId;
-                        });
-                        obj.job = data;
-                        finishCallback();
-                        toastr["info"]("已將【" + obj.pa.name + "】的狀態改為未報到","未報到");
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        toastr["error"]("Oops!發生錯誤了，請再試一次","未報到");
-                    }
+        elem.addClass(animationFadeOut).one(animationEnd, function() { });
+        var id = elem.find('#dailyJobId').val();
+        $.ajax({
+            url: '/check/' + id + '/Line',
+            contentType: "application/json;charset=utf-8",
+            method: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                var obj = _.find(jobData, function (item) {
+                    return item.job.objectId == data.objectId;
                 });
+                obj.job = data;
+                finishCallback();
+                toastr["info"]("已將【" + obj.pa.name + "】的狀態改為未報到","未報到");
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                toastr["error"]("Oops!發生錯誤了，請再試一次","未報到");
+            }
         });
     };
 

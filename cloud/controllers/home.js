@@ -14,14 +14,12 @@ exports.index = function(req, res) {
 };
 
 exports.jobs = function(req, res) {
-    var day_list = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    var today = new Date();
-    today.setHours(0,0,0,0)
+    var workday = new Date(req.params.day);
     var query = new Parse.Query("DailyJob");
-    query.greaterThan("createdAt",today);
+    query.equalTo("workday",workday.getFullYear()+''+(workday.getMonth() + 1) + '' + workday.getDate());
     query.find().then(function( models ){
             if (models.length == 0) {
-                GenJobs({ success: function(){
+                GenJobs(req.params.day, { success: function(){
                     query.equalTo("therapist", Parse.User.current());
                     query.find().then(function(jobs) {
                         var patQuery = new Parse.Query(Patient);
@@ -130,14 +128,13 @@ Date.prototype.addHours= function(h){
     return this;
 }
 
-var GenJobs = function(callback) {
+var GenJobs = function(specDay, callback) {
     var day_list = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    var today = new Date();
-    console.log('=======' + day_list[today.addHours(8).getDay()]);
+    var workday = new Date(specDay);
     var query  = new Parse.Query(Patient);
     query.find().then(function(patiens) {
         _.each(patiens, function(pat) {
-            if ( typeof (pat.get('day')) != 'undefined' && _.contains(pat.get('day').split(','), day_list[today.getDay()])) {
+            if ( typeof (pat.get('day')) != 'undefined' && _.contains(pat.get('day').split(','), day_list[workday.getDay()])) {
                 var dailyJob = new DailyJob();
                 dailyJob.set("patient", pat);
                 dailyJob.set("therapist", pat.get('therapist'));
@@ -148,7 +145,7 @@ var GenJobs = function(callback) {
                 dailyJob.set("insurancePoint", pat.get('insurancePoint'));
                 dailyJob.set("innerPoint", pat.get('innerPoint'));
                 dailyJob.set("status", "Line");
-
+                dailyJob.set("workday", workday.getFullYear()+''+(workday.getMonth() + 1) + '' + workday.getDate() );
                 dailyJob.save(null, {
                     success: function (dailyJob) {
                     },

@@ -74,7 +74,7 @@ app.get('/schedule/:id/now', scheduleController.schedules);
 app.post('/schedule/:id', scheduleController.update);
 
 app.get('/',requireUser, homeController.index);
-app.get('/jobs', homeController.jobs);
+app.get('/jobs/:day', homeController.jobs);
 app.get('/check/:id/:status', homeController.check);
 app.get('/register', homeController.register);
 app.post('/signup', homeController.signup);

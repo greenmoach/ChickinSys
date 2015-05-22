@@ -35,7 +35,7 @@ span.name-circle-xs {
     -moz-border-radius: 50%; /* half of size */
     border-radius: 50%; /* half of size */
 
-    background-color: #e74c3c;
+    background-color: #e799cf;
     color: white;
     text-align: center;
     font-size: 1em;
@@ -213,3 +213,28 @@ span.sch-name-circle {
     border: #ffc107 thin solid;
 }
 
+
+.btn-date-jump {
+    color: #eab7c9;
+}
+
+.input-date-jump {
+    color: #eab7c9;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.line-date-jump {
+    width: 100%;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+    height: 1px;
+    background: #fff;
+    background-image: -webkit-linear-gradient(left, #eab7c9, #fff, #eab7c9);
+    background-image: -moz-linear-gradient(left, #eab7c9, #fff, #eab7c9);
+    background-image: -ms-linear-gradient(left, #eab7c9, #fff, #eab7c9);
+    background-image: -o-linear-gradient(left, #eab7c9, #fff, #eab7c9);
+    opacity: 0.5;
+}

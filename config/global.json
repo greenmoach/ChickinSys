@@ -12,7 +12,7 @@
       "masterKey": "3McX5fkTjv3EZwAYQFW6TV2cu8aklnj2iQ8ohaVi"
     },
     "_default": {
-      "link": "ChickinSys"
+      "link": "development"
     },
     "development": {
       "link": "ChickinSysDev"
